@@ -19,7 +19,13 @@ input{width:100%;background:#0c1423;border:1px solid var(--line);border-radius:1
 button.primary{background:#647ff0;border-color:#647ff0;color:white}.code-wrap{margin-top:12px}.code{white-space:pre;overflow:auto;max-height:520px;background:#070c15;border:1px solid #253249;border-radius:10px;padding:15px;font:12px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace}
 .note{color:var(--muted);font-size:12px;margin:22px 0}.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#e9edff;color:#111a2a;padding:10px 16px;border-radius:10px;font-weight:700;box-shadow:0 8px 30px #0008;display:none}
 @media(max-width:600px){header{padding-top:25px}.program-top{display:block}.program h3{margin-top:5px}.code{font-size:11px;padding:12px}}
-</style></head><body>
+
+#pinGate{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;background:radial-gradient(ellipse at top,#172747 0,#080d18 65%)}
+.pin-card{width:min(390px,100%);padding:30px 24px;text-align:center;background:#111b2d;border:1px solid #293954;border-radius:18px;box-shadow:0 20px 70px #0009}
+.pin-card h2{margin:8px 0;font-size:25px}.pin-card p{color:#aab8cf;margin:6px 0 20px}.pin-card input{text-align:center;font-size:24px;letter-spacing:.35em;margin-bottom:12px}.pin-card button{width:100%;padding:13px;border:0;border-radius:10px;background:#647ff0;color:white;font-weight:800;font-size:14px;cursor:pointer}.pin-error{min-height:22px;color:#ff9292;font-size:13px;margin-top:10px}
+body.locked>header,body.locked>main,body.locked>.toast{display:none!important}
+</style></head><body class="locked">
+<section id="pinGate" aria-label="Website PIN lock"><div class="pin-card"><div class="eyebrow">ACCESS PROTECTED</div><h2>Enter PIN</h2><p>Enter the PIN to access the Full Stack Lab Code Portal.</p><form id="pinForm"><input id="pinInput" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="6" placeholder="••••" aria-label="Enter PIN" autocomplete="off" required><button type="submit">UNLOCK PORTAL</button></form><div class="pin-error" id="pinError" role="alert"></div></div></section>
 <header><div class="eyebrow">FULL STACK DEVELOPMENT – 2</div><h1>Lab Code Portal</h1>
 <p>Select your assigned set to view the complete program source code. Copy code directly for your practical work.</p></header>
 <main><section id="home"><div class="toolbar"><input id="search" type="search" placeholder="Search set, topic or program…"></div>
@@ -46,4 +52,18 @@ function showToast(msg){const t=$("toast");t.textContent=msg;t.style.display="bl
 $("copyAll").onclick=()=>copyText(currentSet.programs.map((p,i)=>`PROGRAM ${i+1}: ${p.title}\nCATEGORY: ${p.category}\n\n${p.code}`).join("\n\n"+"=".repeat(65)+"\n\n"));
 $("backBtn").onclick=()=>{$("detail").classList.add("hidden");$("home").classList.remove("hidden");window.scrollTo({top:0,behavior:"smooth"});};
 $("search").addEventListener("input",e=>renderSets(e.target.value));renderSets();
+// PIN gate: SHA-256 hash of the configured PIN (2580).
+const PIN_HASH = "ed946f65d2c785d90e827c5ffd879ce3b49c68d4c88013074176a7e73bc58bcf";
+const pinGate = $("pinGate"), pinInput = $("pinInput"), pinError = $("pinError");
+function unlockPortal(){document.body.classList.remove("locked");pinGate.remove();}
+if(sessionStorage.getItem("labPortalUnlocked") === "yes") unlockPortal();
+$("pinForm").addEventListener("submit", async function(e){
+  e.preventDefault();
+  const entered = pinInput.value;
+  const bytes = new TextEncoder().encode(entered);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  const hash = Array.from(new Uint8Array(digest)).map(b=>b.toString(16).padStart(2,"0")).join("");
+  if(hash === PIN_HASH){sessionStorage.setItem("labPortalUnlocked","yes");unlockPortal();}
+  else{pinError.textContent="Incorrect PIN. Please try again.";pinInput.value="";pinInput.focus();}
+});
 </script></body></html>
