@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thinkering Lab | Arduino Programs</title>
+<title>Thinkering Lab</title>
 
 <style>
 * {
@@ -14,76 +15,78 @@
 
 body {
   font-family: Arial, sans-serif;
-  background: #101827;
+  background: #000;
   color: white;
-  min-height: 100vh;
 }
 
 header {
-  background: #172337;
-  padding: 25px 15px;
   text-align: center;
-  border-bottom: 2px solid #263c59;
+  padding: 25px 10px;
+  background: #111;
+  border-bottom: 1px solid #444;
 }
 
 header h1 {
-  color: #38bdf8;
-  font-size: 28px;
+  font-size: 27px;
+  margin-bottom: 8px;
 }
 
 header p {
-  color: #aabbd0;
-  margin-top: 8px;
+  color: #aaa;
+  font-size: 14px;
 }
 
 .container {
-  max-width: 1100px;
+  max-width: 1000px;
   margin: auto;
   padding: 25px 15px;
 }
 
 #login {
-  max-width: 380px;
+  max-width: 350px;
   margin: 100px auto;
-  padding: 30px;
-  background: #1e2b40;
-  border-radius: 15px;
+  padding: 25px;
+  background: #171717;
+  border: 1px solid #444;
+  border-radius: 8px;
   text-align: center;
 }
 
 #login h2 {
-  color: #38bdf8;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 input {
   width: 100%;
-  padding: 13px;
-  margin: 12px 0;
-  border: 1px solid #40516a;
-  border-radius: 8px;
-  background: #101827;
+  padding: 12px;
+  margin: 15px 0;
+  background: #000;
   color: white;
-  font-size: 16px;
+  border: 1px solid #555;
+  border-radius: 5px;
+  font-size: 15px;
 }
 
 button {
-  border: none;
-  padding: 11px 18px;
-  border-radius: 7px;
+  padding: 10px 16px;
+  background: #333;
+  color: white;
+  border: 1px solid #555;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 14px;
-  font-weight: bold;
+  font-size: 13px;
+}
+
+button:hover {
+  background: #555;
 }
 
 .login-btn {
   width: 100%;
-  background: #0284c7;
-  color: white;
 }
 
 #message {
-  color: #fb7185;
+  color: #ccc;
   margin-top: 12px;
 }
 
@@ -91,66 +94,59 @@ button {
   display: none;
 }
 
+.heading {
+  margin-bottom: 10px;
+  font-size: 23px;
+}
+
+.subtitle {
+  color: #aaa;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
 .search {
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 18px;
+  gap: 15px;
 }
 
 .card {
-  background: #1e2b40;
-  padding: 22px;
-  border: 1px solid #344760;
-  border-radius: 12px;
-  transition: 0.2s;
-}
-
-.card:hover {
-  border-color: #38bdf8;
-  transform: translateY(-3px);
+  background: #171717;
+  border: 1px solid #444;
+  padding: 20px;
+  border-radius: 7px;
 }
 
 .card h3 {
-  color: #38bdf8;
+  font-size: 17px;
   margin-bottom: 12px;
 }
 
 .card p {
-  color: #bdc9d8;
-  font-size: 14px;
+  color: #aaa;
+  font-size: 13px;
   line-height: 1.5;
-  min-height: 42px;
   margin-bottom: 18px;
-}
-
-.view-btn {
-  background: #0284c7;
-  color: white;
-}
-
-.copy-btn {
-  background: #16a34a;
-  color: white;
-  margin-left: 5px;
 }
 
 .buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 8px;
 }
 
 #viewer {
   display: none;
+  background: #171717;
+  border: 1px solid #555;
+  border-radius: 7px;
+  padding: 18px;
   margin-top: 25px;
-  background: #1e2b40;
-  padding: 20px;
-  border-radius: 12px;
-  border: 1px solid #38bdf8;
 }
 
 .viewer-top {
@@ -163,31 +159,26 @@ button {
 }
 
 .viewer-top h2 {
-  color: #38bdf8;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 pre {
-  background: #080f1b;
-  padding: 18px;
-  border-radius: 8px;
+  background: #000;
+  padding: 15px;
+  border: 1px solid #333;
+  border-radius: 5px;
   overflow-x: auto;
   white-space: pre;
-  color: #a7f3d0;
-  font-size: 14px;
+  color: #eee;
+  font-size: 13px;
   line-height: 1.6;
-}
-
-.close-btn {
-  background: #dc2626;
-  color: white;
 }
 
 footer {
   text-align: center;
   padding: 25px;
-  color: #8294aa;
-  font-size: 13px;
+  color: #888;
+  font-size: 12px;
 }
 
 @media(max-width: 500px) {
@@ -195,8 +186,8 @@ footer {
     font-size: 23px;
   }
 
-  .viewer-top h2 {
-    font-size: 17px;
+  .card {
+    padding: 16px;
   }
 
   pre {
@@ -209,34 +200,34 @@ footer {
 <body>
 
 <header>
-  <h1>⚡ THINKERING LAB</h1>
-  <p>Arduino Programming Code Portal</p>
+  <h1>THINKERING LAB</h1>
+  <p>Arduino Experiments - Code Portal</p>
 </header>
 
-<!-- PIN LOGIN -->
+<!-- LOGIN -->
+
 <div id="login">
   <h2>Lab Access</h2>
-  <p>Enter PIN to access Arduino programs</p>
+  <p>Enter PIN to continue</p>
 
   <input type="password" id="pin"
-  placeholder="Enter Access PIN">
+  placeholder="Enter PIN">
 
   <button class="login-btn" onclick="login()">
-    ENTER PORTAL
+    ENTER
   </button>
 
   <p id="message"></p>
 </div>
 
-<!-- MAIN WEBSITE -->
+<!-- MAIN PORTAL -->
+
 <div id="portal" class="container">
 
-  <h2 style="color:#38bdf8;margin-bottom:10px;">
-    Arduino Experiments
-  </h2>
+  <h2 class="heading">Available Programs</h2>
 
-  <p style="color:#aabbd0;margin-bottom:20px;">
-    Select an experiment to view or copy its complete code.
+  <p class="subtitle">
+    Select an experiment to view or copy its code.
   </p>
 
   <input class="search" id="search"
@@ -246,33 +237,37 @@ footer {
   <div class="cards" id="cards"></div>
 
   <!-- CODE VIEWER -->
+
   <div id="viewer">
+
     <div class="viewer-top">
-      <h2 id="codeTitle">Program Code</h2>
+      <h2 id="codeTitle"></h2>
 
       <div class="buttons">
-        <button class="copy-btn" onclick="copyCode()">
+        <button onclick="copyCode()">
           COPY CODE
         </button>
 
-        <button class="close-btn" onclick="closeCode()">
+        <button onclick="closeCode()">
           CLOSE
         </button>
       </div>
     </div>
 
     <pre><code id="codeContent"></code></pre>
+
   </div>
 
 </div>
 
 <footer>
-  THINKERING LAB | Arduino Experiments
+  THINKERING LAB | Arduino Programming
 </footer>
 
 <script>
 
-// LOGIN
+// LOGIN FUNCTION
+
 function login() {
   let pin = document.getElementById("pin").value;
 
@@ -281,7 +276,7 @@ function login() {
     document.getElementById("portal").style.display = "block";
   } else {
     document.getElementById("message").innerText =
-      "Incorrect PIN! Try again.";
+      "Incorrect PIN. Try again.";
   }
 }
 
@@ -290,13 +285,14 @@ document.getElementById("pin").addEventListener("keydown", function(e) {
 });
 
 
-// ALL ARDUINO PROGRAMS
+// ARDUINO PROGRAMS
+
 const programs = [
 
 {
- title: "Fire Sensor with LED and Buzzer",
- description: "Detect fire using a fire sensor and activate an LED and buzzer.",
- code: `int led = 9;
+title: "Fire Sensor with LED and Buzzer",
+description: "Detect fire using a sensor, LED and buzzer.",
+code: `int led = 9;
 int buzzer = 12;
 int fire = 2;
 
@@ -329,9 +325,9 @@ void loop()
 },
 
 {
- title: "Automatic Door using Ultrasonic Sensor",
- description: "Detect a person and automatically open or close the door using a servo motor.",
- code: `#include <Servo.h>
+title: "Automatic Door using Ultrasonic Sensor",
+description: "Automatically open and close a door using a servo motor.",
+code: `#include <Servo.h>
 
 Servo s;
 
@@ -373,9 +369,9 @@ void loop()
 },
 
 {
- title: "Automatic Railway Gate",
- description: "Use an ultrasonic sensor and two servo motors to control a railway gate.",
- code: `#include <Servo.h>
+title: "Automatic Railway Gate",
+description: "Control two railway gate arms using an ultrasonic sensor.",
+code: `#include <Servo.h>
 
 Servo right_servo;
 Servo left_servo;
@@ -426,9 +422,9 @@ void loop()
 },
 
 {
- title: "Arduino Servo Dustbin Lock Control",
- description: "Lock and unlock a dustbin using serial monitor commands and a servo motor.",
- code: `#include <Servo.h>
+title: "Arduino Servo Dustbin Lock Control",
+description: "Lock and unlock a dustbin using serial monitor commands.",
+code: `#include <Servo.h>
 
 Servo dustbin;
 
@@ -468,9 +464,9 @@ void loop()
 },
 
 {
- title: "Arduino LED Blinking in Tinkercad",
- description: "Simulate LED blinking using Arduino built-in LED and digital pins 12 and 11.",
- code: `void setup()
+title: "Arduino LED Blinking in Tinkercad",
+description: "Blink three LEDs using Arduino digital pins.",
+code: `void setup()
 {
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(12, OUTPUT);
@@ -496,41 +492,53 @@ void loop()
 ];
 
 
-// DISPLAY EXPERIMENT CARDS
+// DISPLAY CARDS
+
 function showCards() {
+
   let search = document.getElementById("search")
     .value.toLowerCase();
 
   let html = "";
 
   programs.forEach((p, i) => {
+
     if ((p.title + p.description).toLowerCase().includes(search)) {
+
       html += `
         <div class="card">
+
           <h3>${i + 1}. ${p.title}</h3>
+
           <p>${p.description}</p>
 
           <div class="buttons">
-            <button class="view-btn" onclick="viewCode(${i})">
+
+            <button onclick="viewCode(${i})">
               VIEW CODE
             </button>
 
-            <button class="copy-btn" onclick="copyProgram(${i}, this)">
+            <button onclick="copyProgram(${i}, this)">
               COPY CODE
             </button>
+
           </div>
+
         </div>
       `;
     }
+
   });
 
   document.getElementById("cards").innerHTML =
-    html || "<p>No experiments found.</p>";
+    html || "<p>No programs found.</p>";
 }
 
 
 // VIEW CODE
+
 function viewCode(index) {
+
   document.getElementById("codeTitle").innerText =
     programs[index].title;
 
@@ -545,43 +553,55 @@ function viewCode(index) {
 }
 
 
-// COPY SELECTED CODE
+// COPY CODE
+
 function copyProgram(index, button) {
   copyText(programs[index].code, button);
 }
 
-
-// COPY FROM VIEWER
 function copyCode() {
+
   let code = document.getElementById("codeContent").textContent;
-  copyText(code, document.querySelector("#viewer .copy-btn"));
+
+  copyText(code, document.querySelector("#viewer .copy-btn") ||
+    document.querySelector("#viewer .buttons button"));
 }
 
 
-// COMMON COPY FUNCTION
-function copyText(code, button) {
-  const original = button.innerText;
+// COPY FUNCTION
 
-  function success() {
+function copyText(code, button) {
+
+  let oldText = button.innerText;
+
+  function done() {
     button.innerText = "COPIED ✓";
-    setTimeout(() => {
-      button.innerText = original;
+
+    setTimeout(function() {
+      button.innerText = oldText;
     }, 1500);
   }
 
   if (navigator.clipboard && window.isSecureContext) {
+
     navigator.clipboard.writeText(code)
-      .then(success)
-      .catch(() => fallbackCopy(code, button, success));
+      .then(done)
+      .catch(function() {
+        fallbackCopy(code, done);
+      });
+
   } else {
-    fallbackCopy(code, button, success);
+    fallbackCopy(code, done);
   }
 }
 
 
-// COPY FALLBACK
-function fallbackCopy(code, button, success) {
+// FALLBACK COPY
+
+function fallbackCopy(code, done) {
+
   let area = document.createElement("textarea");
+
   area.value = code;
   area.style.position = "fixed";
   area.style.opacity = "0";
@@ -591,9 +611,9 @@ function fallbackCopy(code, button, success) {
 
   try {
     if (document.execCommand("copy")) {
-      success();
+      done();
     } else {
-      alert("Copy failed. Please select and copy the code manually.");
+      alert("Copy failed. Please copy manually.");
     }
   } catch (e) {
     alert("Copy failed. Please copy manually.");
@@ -603,10 +623,14 @@ function fallbackCopy(code, button, success) {
 }
 
 
-// CLOSE CODE VIEWER
+// CLOSE VIEWER
+
 function closeCode() {
   document.getElementById("viewer").style.display = "none";
 }
+
+
+// LOAD PROGRAMS
 
 showCards();
 
@@ -614,4 +638,3 @@ showCards();
 
 </body>
 </html>
-
