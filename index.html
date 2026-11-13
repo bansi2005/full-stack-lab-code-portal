@@ -4,640 +4,749 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thinkering Lab - AI Lab</title>
+<title>AI Lab Programs Portal</title>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background: #000;
-  color: white;
-  font-family: Arial, sans-serif;
-}
-
-header {
-  text-align: center;
-  padding: 25px 10px;
-  background: #111;
-  border-bottom: 1px solid #444;
-}
-
-header h1 {
-  font-size: 26px;
-  margin-bottom: 8px;
-}
-
-header p {
-  color: #aaa;
-  font-size: 14px;
-}
-
-.container {
-  max-width: 1000px;
-  margin: auto;
-  padding: 25px 15px;
-}
-
-#login {
-  max-width: 350px;
-  margin: 100px auto;
-  padding: 25px;
-  text-align: center;
-  background: #171717;
-  border: 1px solid #444;
-  border-radius: 8px;
-}
-
-#login h2 {
-  margin-bottom: 15px;
-}
-
-input {
-  width: 100%;
-  padding: 12px;
-  margin: 15px 0;
-  background: black;
-  color: white;
-  border: 1px solid #555;
-  border-radius: 5px;
-}
-
-button {
-  padding: 10px 15px;
-  background: #333;
-  color: white;
-  border: 1px solid #555;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #555;
-}
-
-.login-btn {
-  width: 100%;
-}
-
-#message {
-  margin-top: 12px;
-  color: #ccc;
-}
-
-#portal {
-  display: none;
-}
-
-.heading {
-  margin-bottom: 10px;
-  font-size: 23px;
-}
-
-.subtitle {
-  color: #aaa;
-  margin-bottom: 20px;
-  font-size: 14px;
-}
-
-.cards {
-  display: grid;
-  grid-template-columns:
-    repeat(auto-fit, minmax(250px, 1fr));
-  gap: 15px;
-}
-
-.card {
-  background: #171717;
-  border: 1px solid #444;
-  padding: 18px;
-  border-radius: 7px;
-}
-
-.card h3 {
-  font-size: 16px;
-  margin-bottom: 12px;
-}
-
-.question-no {
-  color: #aaa;
-  font-size: 13px;
-  margin-bottom: 8px;
-}
-
-.card p {
-  color: #bbb;
-  font-size: 14px;
-  line-height: 1.5;
-  margin-bottom: 18px;
-}
-
-.buttons {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-#viewer {
-  display: none;
-  background: #171717;
-  border: 1px solid #555;
-  padding: 20px;
-  margin-top: 25px;
-  border-radius: 7px;
-}
-
-.viewer-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 18px;
-}
-
-.viewer-top h2 {
-  font-size: 18px;
-}
-
-#questionContent {
-  color: #ddd;
-  line-height: 1.8;
-  font-size: 15px;
-  white-space: pre-wrap;
-}
-
-footer {
-  text-align: center;
-  padding: 25px;
-  color: #888;
-  font-size: 12px;
-}
-
-@media(max-width: 500px) {
-  header h1 {
-    font-size: 22px;
-  }
-
-  .card {
-    padding: 15px;
-  }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#050505;color:#fff}
+header{text-align:center;padding:25px 15px;border-bottom:1px solid #292929}
+header h1{font-size:26px;margin-bottom:8px}
+header p{color:#999;font-size:14px}
+.container{max-width:1000px;margin:auto;padding:20px}
+input{width:100%;padding:14px;margin:15px 0;background:#151515;color:white;border:1px solid #444;border-radius:8px;font-size:15px}
+.card{background:#111;border:1px solid #292929;border-radius:10px;padding:17px;margin-bottom:14px}
+.card h3{font-size:17px;margin-bottom:8px}
+.card p{color:#aaa;font-size:14px;line-height:1.5;margin-bottom:10px}
+.tag{display:inline-block;background:#252525;color:#bbb;padding:5px 9px;border-radius:5px;font-size:12px;margin-bottom:10px}
+button{padding:10px 14px;border:1px solid #444;border-radius:6px;background:#252525;color:white;cursor:pointer;margin:3px;font-size:13px}
+button:hover{background:#444}
+.view{background:#fff;color:#000;border-color:#fff}
+.details{display:none;margin-top:15px;border-top:1px solid #333;padding-top:15px}
+.details h4{margin:13px 0 8px}
+pre{background:#050505;border:1px solid #333;border-radius:7px;padding:14px;overflow-x:auto;white-space:pre;font-size:13px;line-height:1.5;color:#ddd}
+.note{color:#e8cb7c!important;background:#211d12;padding:10px;border-radius:6px}
+#login{position:fixed;inset:0;background:#050505;z-index:10;display:flex;align-items:center;justify-content:center;padding:20px}
+.loginbox{width:100%;max-width:350px;background:#111;border:1px solid #333;border-radius:12px;padding:25px;text-align:center}
+.loginbox h2{margin-bottom:10px}
+.loginbox p{color:#999;font-size:14px;margin-bottom:12px}
+.loginbox button{width:100%;background:#fff;color:#000;font-weight:bold;padding:12px}
+#error{color:#f77;margin-top:10px;font-size:13px}
+#portal{display:none}
+footer{text-align:center;color:#666;padding:25px;font-size:12px}
+@media(max-width:600px){
+ header h1{font-size:22px}
+ .container{padding:13px}
+ .card{padding:14px}
+ pre{font-size:12px}
 }
 </style>
 </head>
 
 <body>
 
+<div id="login">
+ <div class="loginbox">
+  <h2>AI Lab Programs</h2>
+  <p>Enter PIN to access the portal</p>
+  <input type="password" id="pin" placeholder="Enter PIN">
+  <button onclick="login()">UNLOCK PORTAL</button>
+  <div id="error"></div>
+ </div>
+</div>
+
+<div id="portal">
 <header>
-  <h1>THINKERING LAB</h1>
-  <p>Artificial Intelligence Lab - Program Portal</p>
+ <h1>AI LAB PROGRAMS</h1>
+ <p>16 Questions | Source Code | View & Copy</p>
 </header>
 
-<!-- LOGIN -->
-
-<div id="login">
-  <h2>Lab Access</h2>
-  <p>Enter PIN to continue</p>
-
-  <input type="password" id="pin"
-  placeholder="Enter PIN">
-
-  <button class="login-btn" onclick="login()">
-    ENTER
-  </button>
-
-  <p id="message"></p>
+<div class="container">
+ <input id="search" type="text" placeholder="Search question number or program..." oninput="showPrograms()">
+ <div id="programList"></div>
 </div>
 
-<!-- MAIN PORTAL -->
-
-<div id="portal" class="container">
-
-  <h2 class="heading">AI Lab Programs</h2>
-
-  <p class="subtitle">
-    Total Questions: 16
-  </p>
-
-  <input type="text" id="search"
-  placeholder="Search questions..."
-  oninput="showQuestions()">
-
-  <div class="cards" id="cards"></div>
-
-  <!-- QUESTION VIEWER -->
-
-  <div id="viewer">
-
-    <div class="viewer-top">
-
-      <h2 id="questionTitle"></h2>
-
-      <div class="buttons">
-
-        <button onclick="copyQuestion()">
-          COPY QUESTION
-        </button>
-
-        <button onclick="closeQuestion()">
-          CLOSE
-        </button>
-
-      </div>
-
-    </div>
-
-    <p id="questionContent"></p>
-
-  </div>
-
+<footer>AI Lab Programs Portal</footer>
 </div>
-
-<footer>
-  THINKERING LAB | AI LAB PROGRAMS
-</footer>
 
 <script>
+const programs = [
 
-// LOGIN
-
-function login() {
-
-  let pin = document.getElementById("pin").value;
-
-  if (pin === "2580") {
-
-    document.getElementById("login").style.display = "none";
-    document.getElementById("portal").style.display = "block";
-
-  } else {
-
-    document.getElementById("message").innerText =
-      "Incorrect PIN. Try again.";
-
-  }
+{
+n:1,title:"Depth First Search (DFS)",lang:"Python",
+q:"Write a program to implement Depth First Search.",
+desc:"DFS explores a graph deeply before backtracking.",
+input:"Starting node: 5",
+output:"5 3 2 4 8 7",
+code:`graph = {
+    '5': ['3', '7'],
+    '3': ['2', '4'],
+    '7': ['8'],
+    '2': [],
+    '4': ['8'],
+    '8': []
 }
 
-document.getElementById("pin").addEventListener("keydown", function(e) {
-  if (e.key === "Enter") login();
-});
+visited = set()
 
+def dfs(node):
+    if node not in visited:
+        print(node, end=" ")
+        visited.add(node)
 
-// ALL 16 AI LAB QUESTIONS
+        for neighbour in graph[node]:
+            dfs(neighbour)
 
-const questions = [
-
-{
-no: 1,
-title: "Depth First Search (DFS)",
-question: `1. Write a program to implement DFS.
-
-Implement the Depth First Search algorithm to traverse a graph using a stack or recursion.
-
-Display the visited vertices starting from the given vertex.`
+print("DFS Traversal:")
+dfs('5')`
 },
 
 {
-no: 2,
-title: "Breadth First Search (BFS)",
-question: `2. Write a program to implement BFS.
+n:2,title:"Breadth First Search (BFS)",lang:"Python",
+q:"Write a program to implement Breadth First Search.",
+desc:"BFS visits neighbouring vertices level by level using a queue.",
+input:"Starting node: 5",
+output:"5 3 7 2 4 8",
+code:`graph = {
+    '5': ['3', '7'],
+    '3': ['2', '4'],
+    '7': ['8'],
+    '2': [],
+    '4': ['8'],
+    '8': []
+}
 
-Implement the Breadth First Search algorithm to traverse a graph using a queue.
+visited = []
+queue = []
 
-Display the visited vertices starting from the given vertex.`
+def bfs(node):
+    visited.append(node)
+    queue.append(node)
+
+    while queue:
+        current = queue.pop(0)
+        print(current, end=" ")
+
+        for neighbour in graph[current]:
+            if neighbour not in visited:
+                visited.append(neighbour)
+                queue.append(neighbour)
+
+print("BFS Traversal:")
+bfs('5')`
 },
 
 {
-no: 3,
-title: "A* Algorithm",
-question: `3. Write a program to implement A* algorithm.
+n:3,title:"A* Algorithm",lang:"Python",
+q:"Write a program to implement the A* algorithm.",
+desc:"A* uses path cost and heuristic cost to find a path to the goal.",
+input:"Start: A\nGoal: D",
+output:"Path found: ['A', 'B', 'D']",
+code:`import heapq
 
-Implement A* search using the path cost and heuristic value to find an optimal path between the start node and goal node.`
+graph = {
+    'A': [('B', 1), ('C', 3), ('D', 7)],
+    'B': [('D', 5)],
+    'C': [('D', 12)],
+    'D': []
+}
+
+h = {'A': 1, 'B': 1, 'C': 1, 'D': 0}
+
+def astar(start, goal):
+    queue = [(h[start], 0, start, [start])]
+    best = {start: 0}
+
+    while queue:
+        f, cost, node, path = heapq.heappop(queue)
+
+        if node == goal:
+            print("Path found:", path)
+            return
+
+        if cost != best[node]:
+            continue
+
+        for neighbour, weight in graph[node]:
+            new_cost = cost + weight
+
+            if new_cost < best.get(neighbour, float('inf')):
+                best[neighbour] = new_cost
+                new_path = path + [neighbour]
+                heapq.heappush(
+                    queue,
+                    (new_cost + h[neighbour],
+                     new_cost, neighbour, new_path)
+                )
+
+    print("Path does not exist")
+
+astar('A', 'D')`
 },
 
 {
-no: 4,
-title: "Hill Climbing Problem",
-question: `4. Write a program to implement Hill Climbing Problem.
+n:4,title:"Hill Climbing Problem",lang:"Python",
+q:"Write a program to implement Hill Climbing.",
+desc:"Hill Climbing moves to a better neighbouring state until no better neighbour exists.",
+input:"A two-dimensional search landscape is generated.",
+output:"Best position and maximum value are displayed.",
+code:`import numpy as np
 
-Implement the Hill Climbing algorithm to find the highest-valued neighbouring state and continue until no better state is available.`
+landscape = np.random.randint(1, 100, (10, 10))
+
+def hill_climb():
+    x, y = 0, 0
+
+    while True:
+        best_x, best_y = x, y
+        best_value = landscape[x][y]
+
+        for dx, dy in [(0,1), (0,-1), (1,0), (-1,0)]:
+            nx, ny = x + dx, y + dy
+
+            if 0 <= nx < 10 and 0 <= ny < 10:
+                if landscape[nx][ny] > best_value:
+                    best_x, best_y = nx, ny
+                    best_value = landscape[nx][ny]
+
+        if (best_x, best_y) == (x, y):
+            break
+
+        x, y = best_x, best_y
+
+    print("Best position:", x, y)
+    print("Maximum value:", landscape[x][y])
+
+hill_climb()`
 },
 
 {
-no: 5,
-title: "Towers of Hanoi",
-question: `5. Write a program to implement Towers of Hanoi problem.
+n:5,title:"Towers of Hanoi",lang:"C++",
+q:"Write a program to implement Towers of Hanoi.",
+desc:"Move all disks from the starting rod to the ending rod using an auxiliary rod.",
+input:"Number of disks: 3",
+output:"7 moves are displayed.",
+code:`#include <iostream>
+using namespace std;
 
-Move all disks from the starting rod to the destination rod using an auxiliary rod.
+void TowerOfHanoi(int n, char from, char to, char aux)
+{
+    if (n == 1)
+    {
+        cout << "Move disk 1 from "
+             << from << " to " << to << endl;
+        return;
+    }
 
-Rules:
-1. Move only one disk at a time.
-2. A larger disk cannot be placed on a smaller disk.
-3. Use the auxiliary rod to complete the movement.`
+    TowerOfHanoi(n - 1, from, aux, to);
+
+    cout << "Move disk " << n << " from "
+         << from << " to " << to << endl;
+
+    TowerOfHanoi(n - 1, aux, to, from);
+}
+
+int main()
+{
+    TowerOfHanoi(3, 'A', 'C', 'B');
+    return 0;
+}`
 },
 
 {
-no: 6,
-title: "Travelling Salesman Problem",
-question: `6. Write a program to find the solution for Travelling Salesman Problem.
+n:6,title:"Travelling Salesman Problem",lang:"Python",
+q:"Write a program to implement Travelling Salesman Problem.",
+desc:"Find the minimum cost Hamiltonian cycle by checking all possible routes.",
+input:"A graph with 4 vertices.",
+output:"Minimum cost: 80",
+code:`from itertools import permutations
 
-Given a set of cities and distances between every pair of cities, find the shortest possible route that visits every city exactly once and returns to the starting point.`
+graph = [
+    [0, 10, 15, 20],
+    [10, 0, 35, 25],
+    [15, 35, 0, 30],
+    [20, 25, 30, 0]
+]
+
+n = len(graph)
+start = 0
+vertices = [i for i in range(n) if i != start]
+
+minimum = float('inf')
+
+for route in permutations(vertices):
+    cost = 0
+    current = start
+
+    for city in route:
+        cost += graph[current][city]
+        current = city
+
+    cost += graph[current][start]
+    minimum = min(minimum, cost)
+
+print("Minimum cost:", minimum)`
 },
 
 {
-no: 7,
-title: "Simulated Annealing",
-question: `7. Write a program to implement Simulated Annealing Algorithm.
+n:7,title:"Simulated Annealing",lang:"Python",
+q:"Write a program to implement Simulated Annealing.",
+desc:"Simulated Annealing searches for an optimum and may accept worse solutions to escape local optima.",
+input:"Search range: -6 to 6\nIterations: 1200",
+output:"A plot of the objective values is displayed.",
+code:`import numpy as np
+import matplotlib.pyplot as plt
+from math import exp
 
-Implement Simulated Annealing to find an optimal solution using random changes, temperature and acceptance probability.
+def objective(x):
+    return x[0] ** 2
 
-Demonstrate how the algorithm can accept a worse solution to avoid getting stuck at local optima.`
+def simulated_annealing():
+    current = np.array([np.random.uniform(-6, 6)])
+    best = current.copy()
+    history = []
+
+    for i in range(1200):
+        temperature = 12 / (i + 1)
+
+        new = current + np.random.randn(1) * 0.1
+        new = np.clip(new, -6, 6)
+
+        difference = objective(new) - objective(current)
+
+        if difference < 0 or np.random.rand() < exp(-difference / temperature):
+            current = new
+
+        if objective(current) < objective(best):
+            best = current.copy()
+
+        history.append(objective(best))
+
+    print("Best point:", best)
+    print("Best value:", objective(best))
+
+    plt.plot(history)
+    plt.xlabel("Iterations")
+    plt.ylabel("Objective Value")
+    plt.show()
+
+np.random.seed(1)
+simulated_annealing()`
 },
 
 {
-no: 8,
-title: "8 Puzzle Problem",
-question: `8. Write a program to implement 8 Puzzle Problem.
+n:8,title:"8 Puzzle Problem",lang:"Python",
+q:"Write a program to implement the 8 Puzzle Problem using Branch and Bound.",
+desc:"Arrange the tiles into the goal configuration by moving the empty space.",
+input:"Initial: [[1,2,3],[5,6,0],[7,8,4]]\nGoal: [[1,2,3],[5,8,6],[0,7,4]]",
+output:"The solution moves are displayed.",
+code:`import heapq
 
-Given a 3x3 board containing eight numbered tiles and one empty space, move the adjacent tiles into the empty space to reach the final configuration.
+start = (1, 2, 3, 5, 6, 0, 7, 8, 4)
+goal = (1, 2, 3, 5, 8, 6, 0, 7, 4)
 
-Use a search technique to find the solution.`
+def heuristic(state):
+    return sum(
+        state.index(i) != goal.index(i)
+        for i in range(1, 9)
+    )
+
+def solve():
+    queue = [(heuristic(start), 0, start, [])]
+    visited = set()
+
+    while queue:
+        f, cost, state, path = heapq.heappop(queue)
+
+        if state == goal:
+            print("Solution moves:")
+            for move in path:
+                print(move)
+            return
+
+        if state in visited:
+            continue
+
+        visited.add(state)
+        zero = state.index(0)
+        row, col = divmod(zero, 3)
+
+        moves = [
+            (-1, 0, "UP"),
+            (1, 0, "DOWN"),
+            (0, -1, "LEFT"),
+            (0, 1, "RIGHT")
+        ]
+
+        for dr, dc, name in moves:
+            nr, nc = row + dr, col + dc
+
+            if 0 <= nr < 3 and 0 <= nc < 3:
+                pos = nr * 3 + nc
+                new = list(state)
+                new[zero], new[pos] = new[pos], new[zero]
+                new = tuple(new)
+
+                if new not in visited:
+                    heapq.heappush(
+                        queue,
+                        (cost + 1 + heuristic(new),
+                         cost + 1, new, path + [name])
+                    )
+
+    print("No solution found")
+
+solve()`
 },
 
 {
-no: 9,
-title: "Wumpus World Problem",
-question: `9. Implement Wumpus World Problem.
-
-Implement the Wumpus World environment to demonstrate an intelligent knowledge-based agent.
-
-The agent should identify hazards, collect information from the environment and try to reach its goal safely.`
+n:9,title:"Wumpus World Problem",lang:"Theory / No code in PDF",
+q:"Explain and implement the Wumpus World Problem.",
+desc:"The PDF explains the Wumpus World environment, agent, sensors and rules.",
+input:"Not specified in the PDF.",
+output:"The PDF does not provide a standalone executable program.",
+note:"The supplied PDF contains theory and explanation for Wumpus World, but no complete source-code listing."
 },
 
 {
-no: 10,
-title: "Chatbot using AWS Lex and Pandora Bots",
-question: `10. Build a Chatbot using AWS Lex, Pandora bots.
-
-Create and configure a chatbot using AWS Lex or Pandora Bots.
-
-Configure the bot, provide suitable responses and test the chatbot through user conversations.`
+n:10,title:"Chatbot using AWS Lex and Pandora Bots",lang:"AWS Lex / Pandora Bots",
+q:"Create a chatbot using AWS Lex and Pandora Bots.",
+desc:"The PDF describes chatbot creation using AWS Lex and Pandora Bots through their consoles.",
+input:"User messages entered into the chatbot.",
+output:"The chatbot responds according to its configured intents and responses.",
+note:"The PDF provides setup instructions, not a standalone source-code program."
 },
 
 {
-no: 11,
-title: "College Information Chatbot",
-question: `11. Build a bot which provides all the information related to your college.
+n:11,title:"College Information Chatbot",lang:"Python",
+q:"Write a program to create a chatbot using ChatterBot.",
+desc:"The PDF provides a basic ChatterBot example with greetings and conversation training.",
+input:"User enters a message.",
+output:"The chatbot responds to the user.",
+note:"The supplied code is a basic ChatterBot example, not a complete college information database. ChatterBot versions may require compatible Python and dependency versions.",
+code:`from chatterbot import ChatBot
+from chatterbot.trainers import ChatterBotCorpusTrainer
 
-Create a chatbot using Python ChatterBot that provides information about your college.
+chatbot = ChatBot("College Bot")
 
-The bot should respond to user questions using its trained conversational data.`
+trainer = ChatterBotCorpusTrainer(chatbot)
+trainer.train("chatterbot.corpus.english")
+
+print("College Chatbot")
+print("Type exit to stop")
+
+while True:
+    message = input("You: ")
+
+    if message.lower() == "exit":
+        break
+
+    response = chatbot.get_response(message)
+    print("Bot:", response)`
 },
 
 {
-no: 12,
-title: "Wikipedia Virtual Assistant",
-question: `12. Build A Virtual Assistant For Wikipedia Using Wolfram Alpha And Python.
+n:12,title:"Wikipedia Virtual Assistant",lang:"Python",
+q:"Write a Python program to create a virtual assistant using Wolfram Alpha.",
+desc:"The program sends a user query to Wolfram Alpha and displays the returned answer.",
+input:"A question entered by the user.",
+output:"Answer returned by Wolfram Alpha.",
+note:"Install the wolframalpha package and replace YOUR_APP_ID with your actual Wolfram Alpha App ID.",
+code:`import wolframalpha
 
-Create a simple Python assistant using the Wolfram Alpha API.
+app_id = "YOUR_APP_ID"
+client = wolframalpha.Client(app_id)
 
-The assistant should accept questions from the user and display answers.
+question = input("Ask a question: ")
 
-Example:
-Input: What is the capital of India?
-Output: New Delhi
+result = client.query(question)
 
-Input: What is sin(30)?
-Output: 0.5`
+try:
+    answer = next(result.results).text
+    print("Answer:", answer)
+except StopIteration:
+    print("No answer found")`
 },
 
 {
-no: 13,
-title: "Recursive Substring Counting",
-question: `13. The following is a function that counts the number of times a string occurs in another string:
+n:13,title:"Recursive Substring Counting",lang:"Python",
+q:"Write a recursive program to count substring occurrences.",
+desc:"The question asks for counting occurrences of a contiguous substring. The PDF listing instead demonstrates subsequence counting.",
+input:"Substring: ab\nString: cabalaba",
+output:"2",
+note:"The following code implements the question's contiguous-substring requirement. It differs from the subsequence-counting code shown in the PDF.",
+code:`def count_substring(sub, text):
+    if len(text) < len(sub):
+        return 0
 
-Write a recursive version of the above function.
+    if text.startswith(sub):
+        return 1 + count_substring(sub, text[1:])
 
-For example:
-countsubstring('ab', 'cabalaba') returns 2.
+    return count_substring(sub, text[1:])
 
-Use recursion to count the occurrences of a substring.`
+print(count_substring("ab", "cabalaba"))`
 },
 
 {
-no: 14,
-title: "Higher Order Functions",
-question: `14. Higher order functions.
+n:14,title:"Higher Order Functions",lang:"Python",
+q:"Write a function count(test, list) without using existing higher order functions.",
+desc:"Count how many elements in a list satisfy a given condition.",
+input:"Numbers: [1, 2, 3, 4, 5, 6]\nCondition: Even numbers",
+output:"Count: 3",
+note:"This is a simple loop-based implementation of the question's stated requirement. The PDF's longer listing uses additional higher-order functions.",
+code:`def count(test, values):
+    total = 0
 
-Write a higher-order function count that counts the number of elements in a list that satisfy a given test.
+    for item in values:
+        if test(item):
+            total += 1
 
-For example:
-count(lambda x: x>2, [1,2,3,4,5])
+    return total
 
-Expected output:
-3
+numbers = [1, 2, 3, 4, 5, 6]
 
-Solve this task without using any existing higher-order function.`
+result = count(lambda x: x % 2 == 0, numbers)
+
+print("Count:", result)`
 },
 
 {
-no: 15,
-title: "Knapsack Problem",
-question: `15. Brute force solution to the Knapsack problem.
+n:15,title:"Knapsack Problem",lang:"Python",
+q:"Write a program to implement the Knapsack Problem.",
+desc:"The PDF's supplied program implements Fractional Knapsack using a greedy value-to-weight ratio.",
+input:"Weights: [10, 40, 20, 30]\nValues: [60, 40, 100, 120]\nCapacity: 50",
+output:"Maximum value: 240.0",
+note:"Important: The PDF question describes brute-force 0/1 Knapsack, but its supplied source code is Fractional Knapsack. The code below follows the actual source listing.",
+code:`class Item:
+    def __init__(self, value, weight):
+        self.value = value
+        self.weight = weight
+        self.ratio = value / weight
 
-Write a function that generates random problem instances for the knapsack program.
+def fractional_knapsack(values, weights, capacity):
+    items = []
 
-Generate N items with:
-1. Unique item names.
-2. Random size between 1 and 5.
-3. Random value between 1 and 10.
+    for i in range(len(values)):
+        items.append(Item(values[i], weights[i]))
 
-Perform at least 10 runs for problem sizes:
-10, 12, 14, 16, 18, 20 and 22.
+    items.sort(key=lambda x: x.ratio, reverse=True)
 
-Use different backpack capacities and measure the execution time.
+    total = 0
 
-Observe how the number of items and backpack size affect performance.`
+    for item in items:
+        if capacity >= item.weight:
+            capacity -= item.weight
+            total += item.value
+        else:
+            total += item.ratio * capacity
+            break
+
+    return total
+
+values = [60, 40, 100, 120]
+weights = [10, 40, 20, 30]
+capacity = 50
+
+print("Maximum value:",
+      fractional_knapsack(values, weights, capacity))`
 },
 
 {
-no: 16,
-title: "Graph Coloring Problem",
-question: `16. Assume that you are organising a party for N people and have been given a list L of people who, for social reasons, should not sit at the same table.
+n:16,title:"Graph Coloring Problem",lang:"Python",
+q:"Write a program to implement Graph Coloring using Backtracking.",
+desc:"Assign colors to graph vertices so that no two adjacent vertices have the same color.",
+input:"Number of colors: 3",
+output:"A valid color assignment is displayed.",
+code:`V = 4
+m = 3
 
-Assume that you have C tables.
+graph = [
+    [0, 1, 1, 1],
+    [1, 0, 1, 0],
+    [1, 1, 0, 1],
+    [1, 0, 1, 0]
+]
 
-Write a function layout(N,C,L) that assigns each guest to a table so that no restricted pair sits together.
+colors = [0] * V
 
-If no valid arrangement is possible, return False.
+def is_safe(vertex, color):
+    for i in range(V):
+        if graph[vertex][i] == 1 and colors[i] == color:
+            return False
+    return True
 
-Solve the problem using the Graph Coloring approach.`
+def graph_coloring(vertex):
+    if vertex == V:
+        print("Color assignment:", colors)
+        return True
+
+    for color in range(1, m + 1):
+        if is_safe(vertex, color):
+            colors[vertex] = color
+
+            if graph_coloring(vertex + 1):
+                return True
+
+            colors[vertex] = 0
+
+    return False
+
+if not graph_coloring(0):
+    print("No solution exists")`
 }
 
 ];
 
+function login() {
+    const pin = document.getElementById("pin").value;
 
-// DISPLAY QUESTIONS
-
-function showQuestions() {
-
-  let search = document.getElementById("search")
-    .value.toLowerCase();
-
-  let html = "";
-
-  questions.forEach((q, index) => {
-
-    if ((q.title + q.question).toLowerCase().includes(search)) {
-
-      html += `
-        <div class="card">
-
-          <div class="question-no">
-            QUESTION ${String(q.no).padStart(2, "0")}
-          </div>
-
-          <h3>${q.title}</h3>
-
-          <p>${q.question.split("\n")[0]}</p>
-
-          <div class="buttons">
-
-            <button onclick="viewQuestion(${index})">
-              VIEW QUESTION
-            </button>
-
-            <button onclick="copyOne(${index}, this)">
-              COPY QUESTION
-            </button>
-
-          </div>
-
-        </div>
-      `;
-    }
-
-  });
-
-  document.getElementById("cards").innerHTML =
-    html || "<p>No questions found.</p>";
-}
-
-
-// VIEW QUESTION
-
-function viewQuestion(index) {
-
-  document.getElementById("questionTitle").innerText =
-    "QUESTION " + String(questions[index].no).padStart(2, "0");
-
-  document.getElementById("questionContent").innerText =
-    questions[index].question;
-
-  document.getElementById("viewer").style.display = "block";
-
-  document.getElementById("viewer").scrollIntoView({
-    behavior: "smooth"
-  });
-}
-
-
-// COPY QUESTION
-
-function copyOne(index, button) {
-  copyText(questions[index].question, button);
-}
-
-function copyQuestion() {
-
-  let text = document.getElementById("questionContent").innerText;
-
-  copyText(text, document.querySelector("#viewer .buttons button"));
-
-}
-
-
-// COMMON COPY FUNCTION
-
-function copyText(text, button) {
-
-  let oldText = button.innerText;
-
-  function done() {
-
-    button.innerText = "COPIED ✓";
-
-    setTimeout(function() {
-      button.innerText = oldText;
-    }, 1500);
-
-  }
-
-  if (navigator.clipboard && window.isSecureContext) {
-
-    navigator.clipboard.writeText(text)
-      .then(done)
-      .catch(function() {
-        fallbackCopy(text, done);
-      });
-
-  } else {
-
-    fallbackCopy(text, done);
-
-  }
-
-}
-
-
-// FALLBACK COPY
-
-function fallbackCopy(text, done) {
-
-  let area = document.createElement("textarea");
-
-  area.value = text;
-  area.style.position = "fixed";
-  area.style.opacity = "0";
-
-  document.body.appendChild(area);
-  area.select();
-
-  try {
-
-    if (document.execCommand("copy")) {
-      done();
+    if (pin === "2580") {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("portal").style.display = "block";
+        showPrograms();
     } else {
-      alert("Copy failed. Please copy manually.");
+        document.getElementById("error").textContent = "Incorrect PIN. Try again.";
+    }
+}
+
+document.getElementById("pin").addEventListener("keydown", function(e) {
+    if (e.key === "Enter") login();
+});
+
+function showPrograms() {
+    const search = document.getElementById("search").value.toLowerCase();
+    const list = document.getElementById("programList");
+
+    list.innerHTML = "";
+
+    const filtered = programs.filter(p =>
+        String(p.n).includes(search) ||
+        p.title.toLowerCase().includes(search) ||
+        p.q.toLowerCase().includes(search) ||
+        p.lang.toLowerCase().includes(search)
+    );
+
+    if (filtered.length === 0) {
+        list.innerHTML = "<p>No programs found.</p>";
+        return;
     }
 
-  } catch(e) {
+    filtered.forEach(p => {
+        const card = document.createElement("div");
+        card.className = "card";
 
-    alert("Copy failed. Please copy manually.");
+        const heading = document.createElement("h3");
+        heading.textContent = p.n + ". " + p.title;
 
-  }
+        const question = document.createElement("p");
+        question.textContent = p.q;
 
-  document.body.removeChild(area);
+        const tag = document.createElement("span");
+        tag.className = "tag";
+        tag.textContent = p.lang;
 
+        const desc = document.createElement("p");
+        desc.textContent = p.desc;
+
+        const view = document.createElement("button");
+        view.className = "view";
+        view.textContent = "View Code / Details";
+
+        const copy = document.createElement("button");
+        copy.textContent = "Copy Code";
+        copy.disabled = !p.code;
+
+        const details = document.createElement("div");
+        details.className = "details";
+
+        view.onclick = () => {
+            details.style.display =
+                details.style.display === "block" ? "none" : "block";
+        };
+
+        copy.onclick = async () => {
+            try {
+                await navigator.clipboard.writeText(p.code);
+                copy.textContent = "Copied!";
+                setTimeout(() => copy.textContent = "Copy Code", 1500);
+            } catch (err) {
+                const area = document.createElement("textarea");
+                area.value = p.code;
+                document.body.appendChild(area);
+                area.select();
+                document.execCommand("copy");
+                area.remove();
+                copy.textContent = "Copied!";
+                setTimeout(() => copy.textContent = "Copy Code", 1500);
+            }
+        };
+
+        details.appendChild(makeHeading("Question"));
+        details.appendChild(makeText(p.q));
+
+        details.appendChild(makeHeading("Description"));
+        details.appendChild(makeText(p.desc));
+
+        if (p.input) {
+            details.appendChild(makeHeading("Input"));
+            details.appendChild(makeText(p.input));
+        }
+
+        if (p.output) {
+            details.appendChild(makeHeading("Expected Output"));
+            details.appendChild(makeText(p.output));
+        }
+
+        if (p.note) {
+            const note = makeText(p.note);
+            note.className =
+              
+note.className = "note";
+details.appendChild(makeHeading("Note"));
+details.appendChild(note);
 }
 
+if (p.code) {
+    details.appendChild(makeHeading("Source Code"));
 
-// CLOSE VIEWER
+    const pre = document.createElement("pre");
+    const code = document.createElement("code");
 
-function closeQuestion() {
+    code.textContent = p.code;
+    pre.appendChild(code);
+    details.appendChild(pre);
 
-  document.getElementById("viewer").style.display = "none";
+} else {
+    const note = makeText(
+        "No standalone source code was provided in the PDF."
+    );
 
+    note.className = "note";
+    details.appendChild(note);
 }
 
+card.appendChild(heading);
+card.appendChild(question);
+card.appendChild(tag);
+card.appendChild(desc);
+card.appendChild(view);
+card.appendChild(copy);
+card.appendChild(details);
 
-// LOAD QUESTIONS
+list.appendChild(card);
+});
+}
 
-showQuestions();
+function makeHeading(text) {
+    const h = document.createElement("h4");
+    h.textContent = text;
+    return h;
+}
 
+function makeText(text) {
+    const p = document.createElement("p");
+    p.textContent = text;
+    return p;
+}
 </script>
 
 </body>
