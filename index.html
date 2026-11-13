@@ -1,47 +1,44 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Lab Programs Portal</title>
-
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#050505;color:#fff}
-header{text-align:center;padding:25px 15px;border-bottom:1px solid #292929}
-header h1{font-size:26px;margin-bottom:8px}
+body{background:#050505;color:white;font-family:Arial,sans-serif}
+header{text-align:center;padding:25px 12px;border-bottom:1px solid #292929}
+header h1{font-size:25px;margin-bottom:8px}
 header p{color:#999;font-size:14px}
-.container{max-width:1000px;margin:auto;padding:20px}
+.container{max-width:1000px;margin:auto;padding:18px}
 input{width:100%;padding:14px;margin:15px 0;background:#151515;color:white;border:1px solid #444;border-radius:8px;font-size:15px}
-.card{background:#111;border:1px solid #292929;border-radius:10px;padding:17px;margin-bottom:14px}
-.card h3{font-size:17px;margin-bottom:8px}
+.card{background:#111;border:1px solid #292929;border-radius:10px;padding:16px;margin-bottom:14px}
+.card h3{font-size:17px;margin-bottom:9px}
 .card p{color:#aaa;font-size:14px;line-height:1.5;margin-bottom:10px}
 .tag{display:inline-block;background:#252525;color:#bbb;padding:5px 9px;border-radius:5px;font-size:12px;margin-bottom:10px}
-button{padding:10px 14px;border:1px solid #444;border-radius:6px;background:#252525;color:white;cursor:pointer;margin:3px;font-size:13px}
+button{padding:10px 14px;border:1px solid #444;border-radius:6px;background:#252525;color:white;margin:3px;cursor:pointer}
 button:hover{background:#444}
-.view{background:#fff;color:#000;border-color:#fff}
-.details{display:none;margin-top:15px;border-top:1px solid #333;padding-top:15px}
+.view{background:white;color:black;border-color:white}
+.details{display:none;margin-top:14px;padding-top:12px;border-top:1px solid #333}
 .details h4{margin:13px 0 8px}
-pre{background:#050505;border:1px solid #333;border-radius:7px;padding:14px;overflow-x:auto;white-space:pre;font-size:13px;line-height:1.5;color:#ddd}
+pre{background:#050505;border:1px solid #333;border-radius:7px;padding:13px;overflow-x:auto;white-space:pre;font-size:13px;line-height:1.5;color:#ddd}
 .note{color:#e8cb7c!important;background:#211d12;padding:10px;border-radius:6px}
 #login{position:fixed;inset:0;background:#050505;z-index:10;display:flex;align-items:center;justify-content:center;padding:20px}
 .loginbox{width:100%;max-width:350px;background:#111;border:1px solid #333;border-radius:12px;padding:25px;text-align:center}
 .loginbox h2{margin-bottom:10px}
 .loginbox p{color:#999;font-size:14px;margin-bottom:12px}
-.loginbox button{width:100%;background:#fff;color:#000;font-weight:bold;padding:12px}
-#error{color:#f77;margin-top:10px;font-size:13px}
+.loginbox button{width:100%;background:white;color:black;font-weight:bold;padding:12px}
+#error{color:#ff7777;margin-top:10px;font-size:13px}
 #portal{display:none}
 footer{text-align:center;color:#666;padding:25px;font-size:12px}
 @media(max-width:600px){
- header h1{font-size:22px}
- .container{padding:13px}
- .card{padding:14px}
- pre{font-size:12px}
+header h1{font-size:22px}
+.container{padding:12px}
+.card{padding:13px}
+pre{font-size:12px}
 }
 </style>
 </head>
-
 <body>
 
 <div id="login">
@@ -59,12 +56,10 @@ footer{text-align:center;color:#666;padding:25px;font-size:12px}
  <h1>AI LAB PROGRAMS</h1>
  <p>16 Questions | Source Code | View & Copy</p>
 </header>
-
 <div class="container">
- <input id="search" type="text" placeholder="Search question number or program..." oninput="showPrograms()">
+ <input id="search" placeholder="Search question number or program..." oninput="showPrograms()">
  <div id="programList"></div>
 </div>
-
 <footer>AI Lab Programs Portal</footer>
 </div>
 
@@ -72,11 +67,13 @@ footer{text-align:center;color:#666;padding:25px;font-size:12px}
 const programs = [
 
 {
-n:1,title:"Depth First Search (DFS)",lang:"Python",
-q:"Write a program to implement Depth First Search.",
-desc:"DFS explores a graph deeply before backtracking.",
+n:1,
+title:"Depth First Search (DFS)",
+lang:"Python",
+q:"Write a program to implement DFS.",
+desc:"Depth First Search explores a graph by going deep along a branch before backtracking.",
 input:"Starting node: 5",
-output:"5 3 2 4 8 7",
+output:"532487",
 code:`graph = {
     '5': ['3', '7'],
     '3': ['2', '4'],
@@ -88,24 +85,26 @@ code:`graph = {
 
 visited = set()
 
-def dfs(node):
+def dfs(visited, graph, node):
     if node not in visited:
-        print(node, end=" ")
+        print(node, end="")
         visited.add(node)
 
         for neighbour in graph[node]:
-            dfs(neighbour)
+            dfs(visited, graph, neighbour)
 
-print("DFS Traversal:")
-dfs('5')`
+print("Following is the Depth-First Search")
+dfs(visited, graph, '5')`
 },
 
 {
-n:2,title:"Breadth First Search (BFS)",lang:"Python",
-q:"Write a program to implement Breadth First Search.",
-desc:"BFS visits neighbouring vertices level by level using a queue.",
+n:2,
+title:"Breadth First Search (BFS)",
+lang:"Python",
+q:"Write a program to implement BFS.",
+desc:"Breadth First Search visits neighbouring nodes level by level using a queue.",
 input:"Starting node: 5",
-output:"5 3 7 2 4 8",
+output:"537248",
 code:`graph = {
     '5': ['3', '7'],
     '3': ['2', '4'],
@@ -118,147 +117,209 @@ code:`graph = {
 visited = []
 queue = []
 
-def bfs(node):
+def bfs(visited, graph, node):
     visited.append(node)
     queue.append(node)
 
     while queue:
         current = queue.pop(0)
-        print(current, end=" ")
+        print(current, end="")
 
         for neighbour in graph[current]:
             if neighbour not in visited:
                 visited.append(neighbour)
                 queue.append(neighbour)
 
-print("BFS Traversal:")
-bfs('5')`
+print("Following is the Breadth-First Search")
+bfs(visited, graph, '5')`
 },
 
 {
-n:3,title:"A* Algorithm",lang:"Python",
-q:"Write a program to implement the A* algorithm.",
-desc:"A* uses path cost and heuristic cost to find a path to the goal.",
-input:"Start: A\nGoal: D",
+n:3,
+title:"A* Algorithm",
+lang:"Python",
+q:"Write a program to implement A* algorithm.",
+desc:"A* uses path cost and heuristic cost to find a path from the starting node to the goal.",
+input:"Start node: A\nGoal node: D",
 output:"Path found: ['A', 'B', 'D']",
-code:`import heapq
+code:`class Graph:
+    def __init__(self, graph):
+        self.graph = graph
 
-graph = {
+    def get_neighbors(self, node):
+        return self.graph[node]
+
+    def a_star(self, start, stop):
+        open_list = {start}
+        closed_list = set()
+
+        cost = {start: 0}
+        parent = {start: start}
+
+        while open_list:
+            n = min(open_list, key=lambda x: cost[x] + 1)
+
+            if n == stop:
+                path = []
+
+                while parent[n] != n:
+                    path.append(n)
+                    n = parent[n]
+
+                path.append(start)
+                path.reverse()
+
+                print("Path found:", path)
+                return path
+
+            for neighbour, weight in self.get_neighbors(n):
+                new_cost = cost[n] + weight
+
+                if neighbour not in cost or new_cost < cost[neighbour]:
+                    cost[neighbour] = new_cost
+                    parent[neighbour] = n
+                    open_list.add(neighbour)
+
+            open_list.remove(n)
+            closed_list.add(n)
+
+        print("Path does not exist")
+
+adj_list = {
     'A': [('B', 1), ('C', 3), ('D', 7)],
     'B': [('D', 5)],
     'C': [('D', 12)],
     'D': []
 }
 
-h = {'A': 1, 'B': 1, 'C': 1, 'D': 0}
-
-def astar(start, goal):
-    queue = [(h[start], 0, start, [start])]
-    best = {start: 0}
-
-    while queue:
-        f, cost, node, path = heapq.heappop(queue)
-
-        if node == goal:
-            print("Path found:", path)
-            return
-
-        if cost != best[node]:
-            continue
-
-        for neighbour, weight in graph[node]:
-            new_cost = cost + weight
-
-            if new_cost < best.get(neighbour, float('inf')):
-                best[neighbour] = new_cost
-                new_path = path + [neighbour]
-                heapq.heappush(
-                    queue,
-                    (new_cost + h[neighbour],
-                     new_cost, neighbour, new_path)
-                )
-
-    print("Path does not exist")
-
-astar('A', 'D')`
+graph1 = Graph(adj_list)
+graph1.a_star('A', 'D')`
 },
 
 {
-n:4,title:"Hill Climbing Problem",lang:"Python",
-q:"Write a program to implement Hill Climbing.",
-desc:"Hill Climbing moves to a better neighbouring state until no better neighbour exists.",
-input:"A two-dimensional search landscape is generated.",
-output:"Best position and maximum value are displayed.",
+n:4,
+title:"Hill Climbing Problem",
+lang:"Python",
+q:"Write a program to implement Hill Climbing Problem.",
+desc:"Hill Climbing moves to a better neighbouring state until it reaches a local maximum.",
+input:"A random 10 x 10 landscape.",
+output:"Displays the best position and its value.",
 code:`import numpy as np
 
-landscape = np.random.randint(1, 100, (10, 10))
+def find_neighbours(state, landscape):
+    neighbours = []
+    rows, cols = landscape.shape
 
-def hill_climb():
-    x, y = 0, 0
+    x, y = state
+
+    if x > 0:
+        neighbours.append((x - 1, y))
+    if x < rows - 1:
+        neighbours.append((x + 1, y))
+    if y > 0:
+        neighbours.append((x, y - 1))
+    if y < cols - 1:
+        neighbours.append((x, y + 1))
+
+    return neighbours
+
+def hill_climb(landscape):
+    current = (0, 0)
 
     while True:
-        best_x, best_y = x, y
-        best_value = landscape[x][y]
+        neighbours = find_neighbours(current, landscape)
+        best = current
 
-        for dx, dy in [(0,1), (0,-1), (1,0), (-1,0)]:
-            nx, ny = x + dx, y + dy
+        for point in neighbours:
+            if landscape[point] > landscape[best]:
+                best = point
 
-            if 0 <= nx < 10 and 0 <= ny < 10:
-                if landscape[nx][ny] > best_value:
-                    best_x, best_y = nx, ny
-                    best_value = landscape[nx][ny]
-
-        if (best_x, best_y) == (x, y):
+        if best == current:
             break
 
-        x, y = best_x, best_y
+        current = best
 
-    print("Best position:", x, y)
-    print("Maximum value:", landscape[x][y])
+    print("Best position:", current)
+    print("Maximum value:", landscape[current])
 
-hill_climb()`
+landscape = np.random.randint(0, 100, (10, 10))
+hill_climb(landscape)`
 },
 
 {
-n:5,title:"Towers of Hanoi",lang:"C++",
-q:"Write a program to implement Towers of Hanoi.",
-desc:"Move all disks from the starting rod to the ending rod using an auxiliary rod.",
+n:5,
+title:"Towers of Hanoi",
+lang:"C++",
+q:"Write a program to implement Towers of Hanoi problem.",
+desc:"Move all disks from the starting rod to the ending rod using the auxiliary rod.",
 input:"Number of disks: 3",
-output:"7 moves are displayed.",
+output:"7 disk movements.",
 code:`#include <iostream>
+#include <string>
 using namespace std;
 
-void TowerOfHanoi(int n, char from, char to, char aux)
+void TowerOfHanoi(int n, string from_tower,
+                  string to_tower, string aux_tower)
 {
     if (n == 1)
     {
         cout << "Move disk 1 from "
-             << from << " to " << to << endl;
+             << from_tower << " to "
+             << to_tower << endl;
         return;
     }
 
-    TowerOfHanoi(n - 1, from, aux, to);
+    TowerOfHanoi(n - 1, from_tower,
+                 aux_tower, to_tower);
 
     cout << "Move disk " << n << " from "
-         << from << " to " << to << endl;
+         << from_tower << " to "
+         << to_tower << endl;
 
-    TowerOfHanoi(n - 1, aux, to, from);
+    TowerOfHanoi(n - 1, aux_tower,
+                 to_tower, from_tower);
 }
 
 int main()
 {
-    TowerOfHanoi(3, 'A', 'C', 'B');
+    TowerOfHanoi(3, "Start", "End", "Middle");
     return 0;
 }`
 },
-
 {
-n:6,title:"Travelling Salesman Problem",lang:"Python",
+n:6,
+title:"Travelling Salesman Problem",
+lang:"Python",
 q:"Write a program to implement Travelling Salesman Problem.",
 desc:"Find the minimum cost Hamiltonian cycle by checking all possible routes.",
-input:"A graph with 4 vertices.",
-output:"Minimum cost: 80",
-code:`from itertools import permutations
+input:"Graph with 4 vertices.",
+output:"80",
+code:`from sys import maxsize
+from itertools import permutations
+
+def travellingSalesmanProblem(graph, s):
+    vertex = []
+
+    for i in range(len(graph)):
+        if i != s:
+            vertex.append(i)
+
+    min_path = maxsize
+
+    next_permutation = permutations(vertex)
+
+    for route in next_permutation:
+        current_pathweight = 0
+        k = s
+
+        for j in route:
+            current_pathweight += graph[k][j]
+            k = j
+
+        current_pathweight += graph[k][s]
+        min_path = min(min_path, current_pathweight)
+
+    return min_path
 
 graph = [
     [0, 10, 15, 20],
@@ -267,106 +328,124 @@ graph = [
     [20, 25, 30, 0]
 ]
 
-n = len(graph)
-start = 0
-vertices = [i for i in range(n) if i != start]
+s = 0
 
-minimum = float('inf')
-
-for route in permutations(vertices):
-    cost = 0
-    current = start
-
-    for city in route:
-        cost += graph[current][city]
-        current = city
-
-    cost += graph[current][start]
-    minimum = min(minimum, cost)
-
-print("Minimum cost:", minimum)`
+print(travellingSalesmanProblem(graph, s))`
 },
 
 {
-n:7,title:"Simulated Annealing",lang:"Python",
-q:"Write a program to implement Simulated Annealing.",
-desc:"Simulated Annealing searches for an optimum and may accept worse solutions to escape local optima.",
-input:"Search range: -6 to 6\nIterations: 1200",
-output:"A plot of the objective values is displayed.",
-code:`import numpy as np
-import matplotlib.pyplot as plt
-from math import exp
+n:7,
+title:"Simulated Annealing Algorithm",
+lang:"Python",
+q:"Write a program to implement Simulated Annealing Algorithm.",
+desc:"Simulated Annealing is an optimization algorithm that sometimes accepts worse solutions to search for a global optimum.",
+input:"Area: -6 to 6\nTemperature: 12\nIterations: 1200\nStep size: 0.1",
+output:"Displays the optimization graph.",
+note:"Requires NumPy and Matplotlib. Install using: pip install numpy matplotlib",
+code:`from numpy import asarray, exp
+from numpy.random import randn, rand, seed
+from matplotlib import pyplot
 
-def objective(x):
-    return x[0] ** 2
+def objective(step):
+    return step[0] ** 2.0
 
-def simulated_annealing():
-    current = np.array([np.random.uniform(-6, 6)])
-    best = current.copy()
-    history = []
+def sa(objective, area, iterations, step_size, temperature):
 
-    for i in range(1200):
-        temperature = 12 / (i + 1)
+    start_point = area[:, 0] + rand(len(area)) * (
+        area[:, 1] - area[:, 0]
+    )
 
-        new = current + np.random.randn(1) * 0.1
-        new = np.clip(new, -6, 6)
+    start_point_eval = objective(start_point)
 
-        difference = objective(new) - objective(current)
+    mia_start_point = start_point.copy()
+    mia_start_eval = start_point_eval
 
-        if difference < 0 or np.random.rand() < exp(-difference / temperature):
-            current = new
+    outputs = []
 
-        if objective(current) < objective(best):
-            best = current.copy()
+    for i in range(iterations):
 
-        history.append(objective(best))
+        mia_step = mia_start_point + randn(len(area)) * step_size
+        mia_step_eval = objective(mia_step)
 
-    print("Best point:", best)
-    print("Best value:", objective(best))
+        difference = mia_step_eval - mia_start_eval
+        t = temperature / float(i + 1)
 
-    plt.plot(history)
-    plt.xlabel("Iterations")
-    plt.ylabel("Objective Value")
-    plt.show()
+        mac = exp(-difference / t)
 
-np.random.seed(1)
-simulated_annealing()`
+        if difference < 0 or rand() < mac:
+            mia_start_point = mia_step
+            mia_start_eval = mia_step_eval
+
+        if mia_start_eval < start_point_eval:
+            start_point = mia_start_point.copy()
+            start_point_eval = mia_start_eval
+
+        outputs.append(start_point_eval)
+
+    return [start_point, start_point_eval, outputs]
+
+seed(1)
+
+area = asarray([[-6.0, 6.0]])
+temperature = 12
+iterations = 1200
+step_size = 0.1
+
+start_point, output, outputs = sa(
+    objective, area, iterations, step_size, temperature
+)
+
+print("Best point:", start_point)
+print("Best value:", output)
+
+pyplot.plot(outputs, 'ro-')
+pyplot.xlabel('Improvement Value')
+pyplot.ylabel('Evaluation of Objective Function')
+pyplot.show()`
 },
 
 {
-n:8,title:"8 Puzzle Problem",lang:"Python",
-q:"Write a program to implement the 8 Puzzle Problem using Branch and Bound.",
-desc:"Arrange the tiles into the goal configuration by moving the empty space.",
-input:"Initial: [[1,2,3],[5,6,0],[7,8,4]]\nGoal: [[1,2,3],[5,8,6],[0,7,4]]",
-output:"The solution moves are displayed.",
+n:8,
+title:"8 Puzzle Problem",
+lang:"Python",
+q:"Write a program to implement 8 Puzzle Problem.",
+desc:"Arrange eight numbered tiles into the goal configuration by moving the empty space.",
+input:"Initial state:\n1 2 3\n5 6 0\n7 8 4\n\nGoal state:\n1 2 3\n5 8 6\n0 7 4",
+output:"Solution moves are displayed.",
+note:"This is a priority-queue Branch and Bound implementation. It uses a visited-state set to avoid repeating states.",
 code:`import heapq
 
 start = (1, 2, 3, 5, 6, 0, 7, 8, 4)
 goal = (1, 2, 3, 5, 8, 6, 0, 7, 4)
 
-def heuristic(state):
-    return sum(
-        state.index(i) != goal.index(i)
-        for i in range(1, 9)
-    )
+def calculateCost(state):
+    cost = 0
+
+    for i in range(9):
+        if state[i] != 0 and state[i] != goal[i]:
+            cost += 1
+
+    return cost
 
 def solve():
-    queue = [(heuristic(start), 0, start, [])]
+    queue = []
+    heapq.heappush(queue, (calculateCost(start), 0, start, []))
+
     visited = set()
 
     while queue:
-        f, cost, state, path = heapq.heappop(queue)
+        priority, level, state, path = heapq.heappop(queue)
 
         if state == goal:
-            print("Solution moves:")
-            for move in path:
-                print(move)
+            print("Solution:")
+            print(path)
             return
 
         if state in visited:
             continue
 
         visited.add(state)
+
         zero = state.index(0)
         row, col = divmod(zero, 3)
 
@@ -378,19 +457,31 @@ def solve():
         ]
 
         for dr, dc, name in moves:
-            nr, nc = row + dr, col + dc
+            nr = row + dr
+            nc = col + dc
 
             if 0 <= nr < 3 and 0 <= nc < 3:
-                pos = nr * 3 + nc
-                new = list(state)
-                new[zero], new[pos] = new[pos], new[zero]
-                new = tuple(new)
+                new_pos = nr * 3 + nc
 
-                if new not in visited:
+                new_state = list(state)
+                new_state[zero], new_state[new_pos] = (
+                    new_state[new_pos], new_state[zero]
+                )
+
+                new_state = tuple(new_state)
+
+                if new_state not in visited:
+                    new_path = path + [name]
+                    new_level = level + 1
+
                     heapq.heappush(
                         queue,
-                        (cost + 1 + heuristic(new),
-                         cost + 1, new, path + [name])
+                        (
+                            new_level + calculateCost(new_state),
+                            new_level,
+                            new_state,
+                            new_path
+                        )
                     )
 
     print("No solution found")
@@ -399,40 +490,47 @@ solve()`
 },
 
 {
-n:9,title:"Wumpus World Problem",lang:"Theory / No code in PDF",
-q:"Explain and implement the Wumpus World Problem.",
-desc:"The PDF explains the Wumpus World environment, agent, sensors and rules.",
-input:"Not specified in the PDF.",
-output:"The PDF does not provide a standalone executable program.",
-note:"The supplied PDF contains theory and explanation for Wumpus World, but no complete source-code listing."
+n:9,
+title:"Wumpus World Problem",
+lang:"Theory",
+q:"Explain the Wumpus World Problem.",
+desc:"The PDF explains the Wumpus World environment, intelligent agent, sensors and environment rules.",
+input:"Not provided in the PDF.",
+output:"Not provided in the PDF.",
+note:"The supplied PDF contains theoretical explanation and agent/environment details. It does not contain a standalone executable source-code program."
 },
 
 {
-n:10,title:"Chatbot using AWS Lex and Pandora Bots",lang:"AWS Lex / Pandora Bots",
+n:10,
+title:"Chatbot using AWS Lex and Pandora Bots",
+lang:"AWS Lex / Pandora Bots",
 q:"Create a chatbot using AWS Lex and Pandora Bots.",
-desc:"The PDF describes chatbot creation using AWS Lex and Pandora Bots through their consoles.",
-input:"User messages entered into the chatbot.",
-output:"The chatbot responds according to its configured intents and responses.",
-note:"The PDF provides setup instructions, not a standalone source-code program."
+desc:"The PDF describes creating a chatbot using AWS Lex and Pandora Bots through their respective platforms.",
+input:"User enters a message in the chatbot.",
+output:"Chatbot responds according to its configured intents and responses.",
+note:"The PDF contains platform setup instructions, not a standalone executable source-code listing."
 },
 
 {
-n:11,title:"College Information Chatbot",lang:"Python",
+n:11,
+title:"College Information Chatbot",
+lang:"Python",
 q:"Write a program to create a chatbot using ChatterBot.",
-desc:"The PDF provides a basic ChatterBot example with greetings and conversation training.",
+desc:"The PDF provides a basic chatbot example using ChatterBot and its English conversation corpus.",
 input:"User enters a message.",
-output:"The chatbot responds to the user.",
-note:"The supplied code is a basic ChatterBot example, not a complete college information database. ChatterBot versions may require compatible Python and dependency versions.",
+output:"The chatbot displays a response.",
+note:"The PDF's example is a basic ChatterBot, not a complete college information database. Older ChatterBot versions may require compatible Python and dependency versions.",
 code:`from chatterbot import ChatBot
 from chatterbot.trainers import ChatterBotCorpusTrainer
 
-chatbot = ChatBot("College Bot")
+chatbot = ChatBot('corona bot')
 
 trainer = ChatterBotCorpusTrainer(chatbot)
-trainer.train("chatterbot.corpus.english")
 
-print("College Chatbot")
-print("Type exit to stop")
+trainer.train('chatterbot.corpus.english')
+
+print("What is your Number?")
+print("Who are you?")
 
 while True:
     message = input("You: ")
@@ -443,17 +541,20 @@ while True:
     response = chatbot.get_response(message)
     print("Bot:", response)`
 },
-
+ 
 {
-n:12,title:"Wikipedia Virtual Assistant",lang:"Python",
+n:12,
+title:"Wikipedia Virtual Assistant",
+lang:"Python",
 q:"Write a Python program to create a virtual assistant using Wolfram Alpha.",
-desc:"The program sends a user query to Wolfram Alpha and displays the returned answer.",
+desc:"The program accepts a question and displays the answer returned by Wolfram Alpha.",
 input:"A question entered by the user.",
 output:"Answer returned by Wolfram Alpha.",
-note:"Install the wolframalpha package and replace YOUR_APP_ID with your actual Wolfram Alpha App ID.",
+note:"Install using pip install wolframalpha. Replace Your_app_id with your actual Wolfram Alpha App ID.",
 code:`import wolframalpha
 
-app_id = "YOUR_APP_ID"
+app_id = "Your_app_id"
+
 client = wolframalpha.Client(app_id)
 
 question = input("Ask a question: ")
@@ -462,37 +563,51 @@ result = client.query(question)
 
 try:
     answer = next(result.results).text
-    print("Answer:", answer)
+    print(answer)
 except StopIteration:
     print("No answer found")`
 },
 
 {
-n:13,title:"Recursive Substring Counting",lang:"Python",
+n:13,
+title:"Recursive Substring Counting",
+lang:"Python",
 q:"Write a recursive program to count substring occurrences.",
-desc:"The question asks for counting occurrences of a contiguous substring. The PDF listing instead demonstrates subsequence counting.",
-input:"Substring: ab\nString: cabalaba",
-output:"2",
-note:"The following code implements the question's contiguous-substring requirement. It differs from the subsequence-counting code shown in the PDF.",
-code:`def count_substring(sub, text):
-    if len(text) < len(sub):
+desc:"The PDF's supplied program counts subsequences recursively, rather than contiguous substring occurrences.",
+input:"a = GeeksforGeeks\nb = Gks",
+output:"4",
+note:"Source clarification: The PDF listing implements subsequence counting. It does not implement the contiguous substring example mentioned in the question description.",
+code:`def count(a, b, m, n):
+
+    if n == 0:
+        return 1
+
+    if m == 0:
         return 0
 
-    if text.startswith(sub):
-        return 1 + count_substring(sub, text[1:])
+    if a[m - 1] == b[n - 1]:
+        return (
+            count(a, b, m - 1, n - 1)
+            + count(a, b, m - 1, n)
+        )
 
-    return count_substring(sub, text[1:])
+    return count(a, b, m - 1, n)
 
-print(count_substring("ab", "cabalaba"))`
+a = "GeeksforGeeks"
+b = "Gks"
+
+print(count(a, b, len(a), len(b)))`
 },
 
 {
-n:14,title:"Higher Order Functions",lang:"Python",
+n:14,
+title:"Higher Order Functions",
+lang:"Python",
 q:"Write a function count(test, list) without using existing higher order functions.",
-desc:"Count how many elements in a list satisfy a given condition.",
+desc:"Count the number of elements satisfying a given condition.",
 input:"Numbers: [1, 2, 3, 4, 5, 6]\nCondition: Even numbers",
 output:"Count: 3",
-note:"This is a simple loop-based implementation of the question's stated requirement. The PDF's longer listing uses additional higher-order functions.",
+note:"This is a simple implementation of the question's count(test, list) requirement using a loop.",
 code:`def count(test, values):
     total = 0
 
@@ -504,57 +619,66 @@ code:`def count(test, values):
 
 numbers = [1, 2, 3, 4, 5, 6]
 
-result = count(lambda x: x % 2 == 0, numbers)
-
-print("Count:", result)`
+print(count(lambda x: x % 2 == 0, numbers))`
 },
 
 {
-n:15,title:"Knapsack Problem",lang:"Python",
-q:"Write a program to implement the Knapsack Problem.",
-desc:"The PDF's supplied program implements Fractional Knapsack using a greedy value-to-weight ratio.",
-input:"Weights: [10, 40, 20, 30]\nValues: [60, 40, 100, 120]\nCapacity: 50",
-output:"Maximum value: 240.0",
-note:"Important: The PDF question describes brute-force 0/1 Knapsack, but its supplied source code is Fractional Knapsack. The code below follows the actual source listing.",
-code:`class Item:
-    def __init__(self, value, weight):
-        self.value = value
+n:15,
+title:"Knapsack Problem",
+lang:"Python",
+q:"Write a program to implement Knapsack Problem.",
+desc:"The PDF's supplied source code implements Fractional Knapsack using a greedy value-to-weight ratio.",
+input:"Weights = [10, 40, 20, 30]\nValues = [60, 40, 100, 120]\nCapacity = 50",
+output:"240.0",
+note:"The PDF's question describes brute-force 0/1 Knapsack, but its supplied program is Fractional Knapsack. This code follows the supplied program.",
+code:`class ItemValue:
+    def __init__(self, weight, value):
         self.weight = weight
-        self.ratio = value / weight
+        self.value = value
+        self.cost = value / weight
 
-def fractional_knapsack(values, weights, capacity):
+def getMaxValue(weights, values, capacity):
+
     items = []
 
-    for i in range(len(values)):
-        items.append(Item(values[i], weights[i]))
+    for i in range(len(weights)):
+        items.append(
+            ItemValue(weights[i], values[i])
+        )
 
-    items.sort(key=lambda x: x.ratio, reverse=True)
+    items.sort(
+        key=lambda x: x.cost,
+        reverse=True
+    )
 
     total = 0
 
     for item in items:
+
         if capacity >= item.weight:
             capacity -= item.weight
             total += item.value
+
         else:
-            total += item.ratio * capacity
+            total += item.cost * capacity
             break
 
     return total
 
-values = [60, 40, 100, 120]
 weights = [10, 40, 20, 30]
+values = [60, 40, 100, 120]
 capacity = 50
 
-print("Maximum value:",
-      fractional_knapsack(values, weights, capacity))`
+print(getMaxValue(weights, values, capacity))`
 },
 
 {
-n:16,title:"Graph Coloring Problem",lang:"Python",
+n:16,
+title:"Graph Coloring Problem",
+lang:"Python",
 q:"Write a program to implement Graph Coloring using Backtracking.",
-desc:"Assign colors to graph vertices so that no two adjacent vertices have the same color.",
-input:"Number of colors: 3",
+desc:"Assign colors to vertices so that adjacent vertices do not have the same color.",
+input:"Number of vertices: 4\nNumber of colors: 3",
 output:"A valid color assignment is displayed.",
 code:`V = 4
 m = 3
@@ -568,34 +692,39 @@ graph = [
 
 colors = [0] * V
 
-def is_safe(vertex, color):
+def isSafe(vertex, color):
+
     for i in range(V):
         if graph[vertex][i] == 1 and colors[i] == color:
             return False
+
     return True
 
-def graph_coloring(vertex):
+def graphColoring(vertex):
+
     if vertex == V:
-        print("Color assignment:", colors)
+        print("Solution:", colors)
         return True
 
     for color in range(1, m + 1):
-        if is_safe(vertex, color):
+
+        if isSafe(vertex, color):
             colors[vertex] = color
 
-            if graph_coloring(vertex + 1):
+            if graphColoring(vertex + 1):
                 return True
 
             colors[vertex] = 0
 
     return False
 
-if not graph_coloring(0):
+if not graphColoring(0):
     print("No solution exists")`
 }
 
 ];
 
+// LOGIN
 function login() {
     const pin = document.getElementById("pin").value;
 
@@ -604,15 +733,20 @@ function login() {
         document.getElementById("portal").style.display = "block";
         showPrograms();
     } else {
-        document.getElementById("error").textContent = "Incorrect PIN. Try again.";
+        document.getElementById("error").textContent =
+            "Incorrect PIN. Try again.";
     }
 }
 
 document.getElementById("pin").addEventListener("keydown", function(e) {
-    if (e.key === "Enter") login();
+    if (e.key === "Enter") {
+        login();
+    }
 });
 
+// DISPLAY PROGRAMS
 function showPrograms() {
+
     const search = document.getElementById("search").value.toLowerCase();
     const list = document.getElementById("programList");
 
@@ -626,11 +760,12 @@ function showPrograms() {
     );
 
     if (filtered.length === 0) {
-        list.innerHTML = "<p>No programs found.</p>";
+        list.textContent = "No programs found.";
         return;
     }
 
     filtered.forEach(p => {
+
         const card = document.createElement("div");
         card.className = "card";
 
@@ -644,31 +779,29 @@ function showPrograms() {
         tag.className = "tag";
         tag.textContent = p.lang;
 
-        const desc = document.createElement("p");
-        desc.textContent = p.desc;
+        const description = document.createElement("p");
+        description.textContent = p.desc;
 
         const view = document.createElement("button");
         view.className = "view";
-        view.textContent = "View Code / Details";
+        view.textContent = "View Code";
 
         const copy = document.createElement("button");
         copy.textContent = "Copy Code";
-        copy.disabled = !p.code;
 
         const details = document.createElement("div");
         details.className = "details";
 
-        view.onclick = () => {
+        view.onclick = function() {
             details.style.display =
                 details.style.display === "block" ? "none" : "block";
         };
 
-        copy.onclick = async () => {
+        copy.onclick = async function() {
             try {
                 await navigator.clipboard.writeText(p.code);
                 copy.textContent = "Copied!";
-                setTimeout(() => copy.textContent = "Copy Code", 1500);
-            } catch (err) {
+            } catch (error) {
                 const area = document.createElement("textarea");
                 area.value = p.code;
                 document.body.appendChild(area);
@@ -676,78 +809,73 @@ function showPrograms() {
                 document.execCommand("copy");
                 area.remove();
                 copy.textContent = "Copied!";
-                setTimeout(() => copy.textContent = "Copy Code", 1500);
             }
+
+            setTimeout(() => {
+                copy.textContent = "Copy Code";
+            }, 1500);
         };
 
-        details.appendChild(makeHeading("Question"));
-        details.appendChild(makeText(p.q));
+        function addHeading(text) {
+            const h = document.createElement("h4");
+            h.textContent = text;
+            details.appendChild(h);
+        }
 
-        details.appendChild(makeHeading("Description"));
-        details.appendChild(makeText(p.desc));
+        function addText(text) {
+            const p = document.createElement("p");
+            p.textContent = text;
+            details.appendChild(p);
+        }
+
+        addHeading("Question");
+        addText(p.q);
+
+        addHeading("Description");
+        addText(p.desc);
 
         if (p.input) {
-            details.appendChild(makeHeading("Input"));
-            details.appendChild(makeText(p.input));
+            addHeading("Input");
+            addText(p.input);
         }
 
         if (p.output) {
-            details.appendChild(makeHeading("Expected Output"));
-            details.appendChild(makeText(p.output));
+            addHeading("Expected Output");
+            addText(p.output);
         }
 
         if (p.note) {
-            const note = makeText(p.note);
-            note.className =
-              
-note.className = "note";
-details.appendChild(makeHeading("Note"));
-details.appendChild(note);
+            addHeading("Important Note");
+            const note = document.createElement("p");
+            note.className = "note";
+            note.textContent = p.note;
+            details.appendChild(note);
+        }
+
+        if (p.code) {
+            addHeading("Source Code");
+
+            const pre = document.createElement("pre");
+            const code = document.createElement("code");
+
+            code.textContent = p.code;
+
+            pre.appendChild(code);
+            details.appendChild(pre);
+        }
+
+        card.appendChild(heading);
+        card.appendChild(question);
+        card.appendChild(tag);
+        card.appendChild(description);
+        card.appendChild(view);
+        card.appendChild(copy);
+        card.appendChild(details);
+
+        list.appendChild(card);
+    });
 }
 
-if (p.code) {
-    details.appendChild(makeHeading("Source Code"));
-
-    const pre = document.createElement("pre");
-    const code = document.createElement("code");
-
-    code.textContent = p.code;
-    pre.appendChild(code);
-    details.appendChild(pre);
-
-} else {
-    const note = makeText(
-        "No standalone source code was provided in the PDF."
-    );
-
-    note.className = "note";
-    details.appendChild(note);
-}
-
-card.appendChild(heading);
-card.appendChild(question);
-card.appendChild(tag);
-card.appendChild(desc);
-card.appendChild(view);
-card.appendChild(copy);
-card.appendChild(details);
-
-list.appendChild(card);
-});
-}
-
-function makeHeading(text) {
-    const h = document.createElement("h4");
-    h.textContent = text;
-    return h;
-}
-
-function makeText(text) {
-    const p = document.createElement("p");
-    p.textContent = text;
-    return p;
-}
 </script>
-
 </body>
 </html>
