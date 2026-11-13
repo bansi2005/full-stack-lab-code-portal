@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thinkering Lab</title>
+<title>Thinkering Lab - AI Lab</title>
 
 <style>
 * {
@@ -14,9 +14,9 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
   background: #000;
   color: white;
+  font-family: Arial, sans-serif;
 }
 
 header {
@@ -27,7 +27,7 @@ header {
 }
 
 header h1 {
-  font-size: 27px;
+  font-size: 26px;
   margin-bottom: 8px;
 }
 
@@ -46,10 +46,10 @@ header p {
   max-width: 350px;
   margin: 100px auto;
   padding: 25px;
+  text-align: center;
   background: #171717;
   border: 1px solid #444;
   border-radius: 8px;
-  text-align: center;
 }
 
 #login h2 {
@@ -60,21 +60,19 @@ input {
   width: 100%;
   padding: 12px;
   margin: 15px 0;
-  background: #000;
+  background: black;
   color: white;
   border: 1px solid #555;
   border-radius: 5px;
-  font-size: 15px;
 }
 
 button {
-  padding: 10px 16px;
+  padding: 10px 15px;
   background: #333;
   color: white;
   border: 1px solid #555;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 13px;
 }
 
 button:hover {
@@ -86,8 +84,8 @@ button:hover {
 }
 
 #message {
-  color: #ccc;
   margin-top: 12px;
+  color: #ccc;
 }
 
 #portal {
@@ -105,48 +103,51 @@ button:hover {
   font-size: 14px;
 }
 
-.search {
-  margin-bottom: 20px;
-}
-
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns:
+    repeat(auto-fit, minmax(250px, 1fr));
   gap: 15px;
 }
 
 .card {
   background: #171717;
   border: 1px solid #444;
-  padding: 20px;
+  padding: 18px;
   border-radius: 7px;
 }
 
 .card h3 {
-  font-size: 17px;
+  font-size: 16px;
   margin-bottom: 12px;
 }
 
-.card p {
+.question-no {
   color: #aaa;
   font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.card p {
+  color: #bbb;
+  font-size: 14px;
   line-height: 1.5;
   margin-bottom: 18px;
 }
 
 .buttons {
   display: flex;
-  flex-wrap: wrap;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 #viewer {
   display: none;
   background: #171717;
   border: 1px solid #555;
-  border-radius: 7px;
-  padding: 18px;
+  padding: 20px;
   margin-top: 25px;
+  border-radius: 7px;
 }
 
 .viewer-top {
@@ -154,24 +155,19 @@ button:hover {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 15px;
+  gap: 10px;
+  margin-bottom: 18px;
 }
 
 .viewer-top h2 {
   font-size: 18px;
 }
 
-pre {
-  background: #000;
-  padding: 15px;
-  border: 1px solid #333;
-  border-radius: 5px;
-  overflow-x: auto;
-  white-space: pre;
-  color: #eee;
-  font-size: 13px;
-  line-height: 1.6;
+#questionContent {
+  color: #ddd;
+  line-height: 1.8;
+  font-size: 15px;
+  white-space: pre-wrap;
 }
 
 footer {
@@ -183,15 +179,11 @@ footer {
 
 @media(max-width: 500px) {
   header h1 {
-    font-size: 23px;
+    font-size: 22px;
   }
 
   .card {
-    padding: 16px;
-  }
-
-  pre {
-    font-size: 12px;
+    padding: 15px;
   }
 }
 </style>
@@ -201,7 +193,7 @@ footer {
 
 <header>
   <h1>THINKERING LAB</h1>
-  <p>Arduino Experiments - Code Portal</p>
+  <p>Artificial Intelligence Lab - Program Portal</p>
 </header>
 
 <!-- LOGIN -->
@@ -224,59 +216,68 @@ footer {
 
 <div id="portal" class="container">
 
-  <h2 class="heading">Available Programs</h2>
+  <h2 class="heading">AI Lab Programs</h2>
 
   <p class="subtitle">
-    Select an experiment to view or copy its code.
+    Total Questions: 16
   </p>
 
-  <input class="search" id="search"
-  placeholder="Search experiments..."
-  oninput="showCards()">
+  <input type="text" id="search"
+  placeholder="Search questions..."
+  oninput="showQuestions()">
 
   <div class="cards" id="cards"></div>
 
-  <!-- CODE VIEWER -->
+  <!-- QUESTION VIEWER -->
 
   <div id="viewer">
 
     <div class="viewer-top">
-      <h2 id="codeTitle"></h2>
+
+      <h2 id="questionTitle"></h2>
 
       <div class="buttons">
-        <button onclick="copyCode()">
-          COPY CODE
+
+        <button onclick="copyQuestion()">
+          COPY QUESTION
         </button>
 
-        <button onclick="closeCode()">
+        <button onclick="closeQuestion()">
           CLOSE
         </button>
+
       </div>
+
     </div>
 
-    <pre><code id="codeContent"></code></pre>
+    <p id="questionContent"></p>
 
   </div>
 
 </div>
 
 <footer>
-  THINKERING LAB | Arduino Programming
+  THINKERING LAB | AI LAB PROGRAMS
 </footer>
 
 <script>
 
-// LOGIN FUNCTION
+// LOGIN
 
 function login() {
+
   let pin = document.getElementById("pin").value;
 
   if (pin === "2580") {
+
     document.getElementById("login").style.display = "none";
     document.getElementById("portal").style.display = "block";
+
   } else {
+
     document.getElementById("message").innerText =
       "Incorrect PIN. Try again.";
+
   }
 }
 
@@ -285,241 +286,232 @@ document.getElementById("pin").addEventListener("keydown", function(e) {
 });
 
 
-// ARDUINO PROGRAMS
+// ALL 16 AI LAB QUESTIONS
 
-const programs = [
+const questions = [
 
 {
-title: "Fire Sensor with LED and Buzzer",
-description: "Detect fire using a sensor, LED and buzzer.",
-code: `int led = 9;
-int buzzer = 12;
-int fire = 2;
+no: 1,
+title: "Depth First Search (DFS)",
+question: `1. Write a program to implement DFS.
 
-void setup()
-{
-  pinMode(led, OUTPUT);
-  pinMode(buzzer, OUTPUT);
-  pinMode(fire, INPUT);
+Implement the Depth First Search algorithm to traverse a graph using a stack or recursion.
 
-  Serial.begin(9600);
-}
-
-void loop()
-{
-  int value = digitalRead(fire);
-
-  Serial.println(value);
-
-  if (value == 0)
-  {
-    digitalWrite(led, HIGH);
-    digitalWrite(buzzer, HIGH);
-  }
-  else
-  {
-    digitalWrite(led, LOW);
-    digitalWrite(buzzer, LOW);
-  }
-}`
+Display the visited vertices starting from the given vertex.`
 },
 
 {
-title: "Automatic Door using Ultrasonic Sensor",
-description: "Automatically open and close a door using a servo motor.",
-code: `#include <Servo.h>
+no: 2,
+title: "Breadth First Search (BFS)",
+question: `2. Write a program to implement BFS.
 
-Servo s;
+Implement the Breadth First Search algorithm to traverse a graph using a queue.
 
-int trig = 9;
-int echo = 10;
-int distance;
-int time;
-
-void setup()
-{
-  pinMode(trig, OUTPUT);
-  pinMode(echo, INPUT);
-  s.attach(6);
-}
-
-void loop()
-{
-  digitalWrite(trig, LOW);
-  delayMicroseconds(2);
-
-  digitalWrite(trig, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trig, LOW);
-
-  time = pulseIn(echo, HIGH);
-  distance = time * 0.034 / 2;
-
-  if (distance < 10 && distance > 0)
-  {
-    s.write(90);
-  }
-  else
-  {
-    s.write(0);
-  }
-
-  delay(100);
-}`
+Display the visited vertices starting from the given vertex.`
 },
 
 {
-title: "Automatic Railway Gate",
-description: "Control two railway gate arms using an ultrasonic sensor.",
-code: `#include <Servo.h>
+no: 3,
+title: "A* Algorithm",
+question: `3. Write a program to implement A* algorithm.
 
-Servo right_servo;
-Servo left_servo;
-
-int trig = 8;
-int echo = 9;
-int time;
-int distance;
-
-void setup()
-{
-  Serial.begin(9600);
-
-  pinMode(trig, OUTPUT);
-  pinMode(echo, INPUT);
-
-  right_servo.attach(10);
-  left_servo.attach(11);
-}
-
-void loop()
-{
-  digitalWrite(trig, LOW);
-  delayMicroseconds(2);
-
-  digitalWrite(trig, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trig, LOW);
-
-  time = pulseIn(echo, HIGH);
-  distance = time * 0.034 / 2;
-
-  Serial.println(distance);
-
-  if (distance <= 10 && distance > 0)
-  {
-    right_servo.write(90);
-    left_servo.write(90);
-  }
-  else
-  {
-    right_servo.write(0);
-    left_servo.write(0);
-  }
-
-  delay(100);
-}`
+Implement A* search using the path cost and heuristic value to find an optimal path between the start node and goal node.`
 },
 
 {
-title: "Arduino Servo Dustbin Lock Control",
-description: "Lock and unlock a dustbin using serial monitor commands.",
-code: `#include <Servo.h>
+no: 4,
+title: "Hill Climbing Problem",
+question: `4. Write a program to implement Hill Climbing Problem.
 
-Servo dustbin;
-
-void setup()
-{
-  dustbin.attach(10);
-  Serial.begin(9600);
-
-  dustbin.write(0);
-
-  Serial.println("Enter lock or unlock");
-}
-
-void loop()
-{
-  if (Serial.available())
-  {
-    String cmd = Serial.readStringUntil('\\n');
-    cmd.trim();
-
-    if (cmd == "lock")
-    {
-      dustbin.write(0);
-      Serial.println("Dustbin Locked");
-    }
-    else if (cmd == "unlock")
-    {
-      dustbin.write(90);
-      Serial.println("Dustbin Unlocked");
-    }
-    else
-    {
-      Serial.println("Invalid Command");
-    }
-  }
-}`
+Implement the Hill Climbing algorithm to find the highest-valued neighbouring state and continue until no better state is available.`
 },
 
 {
-title: "Arduino LED Blinking in Tinkercad",
-description: "Blink three LEDs using Arduino digital pins.",
-code: `void setup()
+no: 5,
+title: "Towers of Hanoi",
+question: `5. Write a program to implement Towers of Hanoi problem.
+
+Move all disks from the starting rod to the destination rod using an auxiliary rod.
+
+Rules:
+1. Move only one disk at a time.
+2. A larger disk cannot be placed on a smaller disk.
+3. Use the auxiliary rod to complete the movement.`
+},
+
 {
-  pinMode(LED_BUILTIN, OUTPUT);
-  pinMode(12, OUTPUT);
-  pinMode(11, OUTPUT);
-}
+no: 6,
+title: "Travelling Salesman Problem",
+question: `6. Write a program to find the solution for Travelling Salesman Problem.
 
-void loop()
+Given a set of cities and distances between every pair of cities, find the shortest possible route that visits every city exactly once and returns to the starting point.`
+},
+
 {
-  digitalWrite(LED_BUILTIN, HIGH);
-  delay(400);
-  digitalWrite(LED_BUILTIN, LOW);
+no: 7,
+title: "Simulated Annealing",
+question: `7. Write a program to implement Simulated Annealing Algorithm.
 
-  digitalWrite(12, HIGH);
-  delay(400);
-  digitalWrite(12, LOW);
+Implement Simulated Annealing to find an optimal solution using random changes, temperature and acceptance probability.
 
-  digitalWrite(11, HIGH);
-  delay(400);
-  digitalWrite(11, LOW);
-}`
+Demonstrate how the algorithm can accept a worse solution to avoid getting stuck at local optima.`
+},
+
+{
+no: 8,
+title: "8 Puzzle Problem",
+question: `8. Write a program to implement 8 Puzzle Problem.
+
+Given a 3x3 board containing eight numbered tiles and one empty space, move the adjacent tiles into the empty space to reach the final configuration.
+
+Use a search technique to find the solution.`
+},
+
+{
+no: 9,
+title: "Wumpus World Problem",
+question: `9. Implement Wumpus World Problem.
+
+Implement the Wumpus World environment to demonstrate an intelligent knowledge-based agent.
+
+The agent should identify hazards, collect information from the environment and try to reach its goal safely.`
+},
+
+{
+no: 10,
+title: "Chatbot using AWS Lex and Pandora Bots",
+question: `10. Build a Chatbot using AWS Lex, Pandora bots.
+
+Create and configure a chatbot using AWS Lex or Pandora Bots.
+
+Configure the bot, provide suitable responses and test the chatbot through user conversations.`
+},
+
+{
+no: 11,
+title: "College Information Chatbot",
+question: `11. Build a bot which provides all the information related to your college.
+
+Create a chatbot using Python ChatterBot that provides information about your college.
+
+The bot should respond to user questions using its trained conversational data.`
+},
+
+{
+no: 12,
+title: "Wikipedia Virtual Assistant",
+question: `12. Build A Virtual Assistant For Wikipedia Using Wolfram Alpha And Python.
+
+Create a simple Python assistant using the Wolfram Alpha API.
+
+The assistant should accept questions from the user and display answers.
+
+Example:
+Input: What is the capital of India?
+Output: New Delhi
+
+Input: What is sin(30)?
+Output: 0.5`
+},
+
+{
+no: 13,
+title: "Recursive Substring Counting",
+question: `13. The following is a function that counts the number of times a string occurs in another string:
+
+Write a recursive version of the above function.
+
+For example:
+countsubstring('ab', 'cabalaba') returns 2.
+
+Use recursion to count the occurrences of a substring.`
+},
+
+{
+no: 14,
+title: "Higher Order Functions",
+question: `14. Higher order functions.
+
+Write a higher-order function count that counts the number of elements in a list that satisfy a given test.
+
+For example:
+count(lambda x: x>2, [1,2,3,4,5])
+
+Expected output:
+3
+
+Solve this task without using any existing higher-order function.`
+},
+
+{
+no: 15,
+title: "Knapsack Problem",
+question: `15. Brute force solution to the Knapsack problem.
+
+Write a function that generates random problem instances for the knapsack program.
+
+Generate N items with:
+1. Unique item names.
+2. Random size between 1 and 5.
+3. Random value between 1 and 10.
+
+Perform at least 10 runs for problem sizes:
+10, 12, 14, 16, 18, 20 and 22.
+
+Use different backpack capacities and measure the execution time.
+
+Observe how the number of items and backpack size affect performance.`
+},
+
+{
+no: 16,
+title: "Graph Coloring Problem",
+question: `16. Assume that you are organising a party for N people and have been given a list L of people who, for social reasons, should not sit at the same table.
+
+Assume that you have C tables.
+
+Write a function layout(N,C,L) that assigns each guest to a table so that no restricted pair sits together.
+
+If no valid arrangement is possible, return False.
+
+Solve the problem using the Graph Coloring approach.`
 }
 
 ];
 
 
-// DISPLAY CARDS
+// DISPLAY QUESTIONS
 
-function showCards() {
+function showQuestions() {
 
   let search = document.getElementById("search")
     .value.toLowerCase();
 
   let html = "";
 
-  programs.forEach((p, i) => {
+  questions.forEach((q, index) => {
 
-    if ((p.title + p.description).toLowerCase().includes(search)) {
+    if ((q.title + q.question).toLowerCase().includes(search)) {
 
       html += `
         <div class="card">
 
-          <h3>${i + 1}. ${p.title}</h3>
+          <div class="question-no">
+            QUESTION ${String(q.no).padStart(2, "0")}
+          </div>
 
-          <p>${p.description}</p>
+          <h3>${q.title}</h3>
+
+          <p>${q.question.split("\n")[0]}</p>
 
           <div class="buttons">
 
-            <button onclick="viewCode(${i})">
-              VIEW CODE
+            <button onclick="viewQuestion(${index})">
+              VIEW QUESTION
             </button>
 
-            <button onclick="copyProgram(${i}, this)">
-              COPY CODE
+            <button onclick="copyOne(${index}, this)">
+              COPY QUESTION
             </button>
 
           </div>
@@ -531,19 +523,19 @@ function showCards() {
   });
 
   document.getElementById("cards").innerHTML =
-    html || "<p>No programs found.</p>";
+    html || "<p>No questions found.</p>";
 }
 
 
-// VIEW CODE
+// VIEW QUESTION
 
-function viewCode(index) {
+function viewQuestion(index) {
 
-  document.getElementById("codeTitle").innerText =
-    programs[index].title;
+  document.getElementById("questionTitle").innerText =
+    "QUESTION " + String(questions[index].no).padStart(2, "0");
 
-  document.getElementById("codeContent").textContent =
-    programs[index].code;
+  document.getElementById("questionContent").innerText =
+    questions[index].question;
 
   document.getElementById("viewer").style.display = "block";
 
@@ -553,56 +545,61 @@ function viewCode(index) {
 }
 
 
-// COPY CODE
+// COPY QUESTION
 
-function copyProgram(index, button) {
-  copyText(programs[index].code, button);
+function copyOne(index, button) {
+  copyText(questions[index].question, button);
 }
 
-function copyCode() {
+function copyQuestion() {
 
-  let code = document.getElementById("codeContent").textContent;
+  let text = document.getElementById("questionContent").innerText;
 
-  copyText(code, document.querySelector("#viewer .copy-btn") ||
-    document.querySelector("#viewer .buttons button"));
+  copyText(text, document.querySelector("#viewer .buttons button"));
+
 }
 
 
-// COPY FUNCTION
+// COMMON COPY FUNCTION
 
-function copyText(code, button) {
+function copyText(text, button) {
 
   let oldText = button.innerText;
 
   function done() {
+
     button.innerText = "COPIED ✓";
 
     setTimeout(function() {
       button.innerText = oldText;
     }, 1500);
+
   }
 
   if (navigator.clipboard && window.isSecureContext) {
 
-    navigator.clipboard.writeText(code)
+    navigator.clipboard.writeText(text)
       .then(done)
       .catch(function() {
-        fallbackCopy(code, done);
+        fallbackCopy(text, done);
       });
 
   } else {
-    fallbackCopy(code, done);
+
+    fallbackCopy(text, done);
+
   }
+
 }
 
 
 // FALLBACK COPY
 
-function fallbackCopy(code, done) {
+function fallbackCopy(text, done) {
 
   let area = document.createElement("textarea");
 
-  area.value = code;
+  area.value = text;
   area.style.position = "fixed";
   area.style.opacity = "0";
 
@@ -610,29 +607,36 @@ function fallbackCopy(code, done) {
   area.select();
 
   try {
+
     if (document.execCommand("copy")) {
       done();
     } else {
       alert("Copy failed. Please copy manually.");
     }
-  } catch (e) {
+
+  } catch(e) {
+
     alert("Copy failed. Please copy manually.");
+
   }
 
   document.body.removeChild(area);
+
 }
 
 
 // CLOSE VIEWER
 
-function closeCode() {
+function closeQuestion() {
+
   document.getElementById("viewer").style.display = "none";
+
 }
 
 
-// LOAD PROGRAMS
+// LOAD QUESTIONS
 
-showCards();
+showQuestions();
 
 </script>
 
